@@ -156,7 +156,7 @@
             position: relative;
             
             /* Imagen de fondo Hero */
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.9) 100%), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769613947/bg1_om3i6h.png'); 
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,1.9) 100%), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769729483/bg3_zoraop.jpg'); 
             
             background-size: cover;
             background-position: center top; 
@@ -171,10 +171,10 @@
             width: 100%;
             height: 100%; /* Ocupa toda la altura disponible */
             
-            /* Flexbox para separar arriba y abajo */
+            /* Flexbox para alinear todo al fondo */
             display: flex;
             flex-direction: column;
-            justify-content: space-between; 
+            justify-content: flex-end; /* CAMBIO: Todo el contenido pegado abajo */
         }
 
         .hero h1 {
@@ -190,11 +190,14 @@
         }
         
         .hero h4 {
-             font-size: 0.9rem; 
-             letter-spacing: 3px;
-             margin-bottom: 10px;
+             /* CAMBIO: Aplicamos Kaushan Script al h4 también */
+             font-family: 'Kaushan Script', cursive; 
+             font-size: 1.5rem; /* Aumentado ligeramente para destacar */
+             letter-spacing: 1px; /* Reducimos el espaciado original de 3px para script */
+             margin-bottom: 15px; /* Espacio antes del párrafo */
              color: var(--accent-color);
              text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+             font-weight: 400; /* Script no necesita tanto peso */
         }
 
         .hero p {
@@ -285,7 +288,9 @@
             padding: var(--section-padding);
             /* Fondo base claro */
             background-color: #ffffff;
-            /* TEXTURA DIAGONAL: Color #E6E6E6 sobre fondo blanco */
+            /* TEXTURA DIAGONAL: Color #E6E6E6 sobre fondo blanco 
+               NOTA: Aquí están tus cambios con líneas más finas (3px y 4px)
+            */
             background-image: repeating-linear-gradient(
                 45deg,
                 #ffffff,
@@ -468,6 +473,7 @@
             margin: 0 auto;
         }
 
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -566,14 +572,9 @@
     <!-- SECCIÓN DE INICIO (HERO) -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <!-- GRUPO SUPERIOR: Títulos arriba -->
-            <div class="hero-top">
-                <h4>ESTRATEGIA VISUAL & INTELIGENCIA ARTIFICIAL</h4>
-                <h1>Diseño Que Transforma Marcas</h1>
-            </div>
-            
-            <!-- GRUPO INFERIOR: Párrafo y Botón abajo -->
+            <!-- GRUPO INFERIOR: Todo el texto abajo para dejar cara libre -->
             <div class="hero-bottom">
+                <h4>Estrategia Visual & Inteligencia Artificial</h4>
                 <p>Fusionamos creatividad humana con algoritmos de IA para crear identidades visuales impactantes y sitios web que convierten. Especialistas en el futuro de la publicidad digital.</p>
                 <a href="#contacto" class="btn">Cotizar Proyecto</a>
             </div>
