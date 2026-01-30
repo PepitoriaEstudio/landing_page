@@ -17,33 +17,20 @@
     <!-- ESTILOS (CSS) -->
     <style>
         /* ==========================================================================
-           SECCIÓN DE CONFIGURACIÓN GLOBAL
+           CONFIGURACIÓN GLOBAL
            ========================================================================== */
         :root {
-            /* COLORES PRINCIPALES */
-            --bg-color: #0a0a0a;          /* Color de fondo principal (Casi negro) */
-            --text-color: #e0e0e0;        /* Color de texto general */
-            --accent-color: #d4af37;      /* Color de acento (Dorado elegante) */
-            --secondary-bg: #141414;      /* Fondo secundario para tarjetas/secciones */
-            
-            /* FUENTES */
-            --font-heading: 'Anton', sans-serif; /* Anton por defecto para todos los títulos */
-            --font-body: 'Montserrat', sans-serif;     /* Fuente para texto normal */
-            
-            /* ESPACIADO */
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: #d4af37;
+            --secondary-bg: #141414;
+            --font-heading: 'Anton', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
             --section-padding: 100px 20px;
         }
 
-        /* RESET BÁSICO */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth; /* Desplazamiento suave al navegar */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; } /* overflow-x hidden evita scroll lateral por animaciones */
 
         body {
             background-color: var(--bg-color);
@@ -56,20 +43,19 @@
         /* TIPOGRAFÍA */
         h1, h2, h3, h4 {
             font-family: var(--font-heading);
-            font-weight: 400; /* Anton es bold por defecto */
+            font-weight: 400;
             color: #ffffff;
             margin-bottom: 20px;
-            letter-spacing: 2px; /* Anton se ve mejor con un poco más de espacio */
+            letter-spacing: 2px;
         }
 
         h2 {
-            font-size: 4rem; /* Aumentado porque Anton es condensada */
+            font-size: 4rem;
             text-align: center;
             margin-bottom: 50px;
             position: relative;
         }
         
-        /* Línea decorativa debajo de los títulos */
         h2::after {
             content: '';
             display: block;
@@ -79,16 +65,40 @@
             margin: 20px auto 0;
         }
 
-        p {
-            font-weight: 300;
-            color: #b0b0b0;
+        p { font-weight: 300; color: #b0b0b0; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* ==========================================================================
+           ANIMACIONES AL SCROLL (AQUÍ SE DEFINEN LOS MOVIMIENTOS)
+           ========================================================================== */
+        /* Clase base oculta */
+        .reveal {
+            opacity: 0;
+            transition: all 1s ease-out; /* Duración y suavidad de la animación */
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
+        /* Cuando JS añade la clase 'active', el elemento se muestra */
+        .reveal.active {
+            opacity: 1;
+            transform: translate(0, 0); /* Vuelve a su posición original */
         }
+
+        /* --------------------------------------------------------------------------
+           NOTA: Estas son las clases que controlan la dirección.
+           Si quieres cambiar la distancia del movimiento, cambia los pixeles (px).
+           - translateX: Movimiento horizontal (negativo=izquierda, positivo=derecha)
+           - translateY: Movimiento vertical (negativo=arriba, positivo=abajo)
+           --------------------------------------------------------------------------
+        */
+        .from-left { transform: translateX(-100px); }   /* Viene de la izquierda */
+        .from-right { transform: translateX(100px); }   /* Viene de la derecha */
+        .from-bottom { transform: translateY(100px); }  /* Viene de abajo */
+        .from-top { transform: translateY(-100px); }    /* Viene de arriba */
+
+        /* Retrasos para elementos en grupo (para que no aparezcan todos al mismo tiempo) */
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-600 { transition-delay: 0.6s; }
 
         /* ==========================================================================
            NAVEGACIÓN
@@ -107,57 +117,26 @@
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Estilos para el Logo de Imagen */
-        .logo-img {
-            height: 50px; /* Altura controlada para el menú */
-            width: auto;  /* Mantiene proporción */
-            display: block;
-        }
+        .logo-img { height: 50px; width: auto; display: block; }
+        footer .logo-img { margin: 0 auto 20px; height: 60px; }
 
-        /* Ajuste específico para centrar el logo en el footer */
-        footer .logo-img {
-            margin: 0 auto 20px;
-            height: 60px; /* Un poco más grande en el footer si se desea */
-        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .nav-links a:hover { color: var(--accent-color); }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Botón móvil (oculto en escritorio) */
-        .menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        .menu-btn { display: none; font-size: 1.5rem; cursor: pointer; }
 
         /* ==========================================================================
-           SECCIÓN HERO (INICIO) CON PARALLAX
+           HERO
            ========================================================================== */
         .hero {
             height: 100vh;
             display: flex;
-            /* Centramos el contenido horizontalmente, la distribución vertical la maneja .hero-content */
-            align-items: center; 
+            align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            
-            /* Imagen de fondo Hero */
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,1.9) 100%), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769729483/bg3_zoraop.jpg'); 
-            
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.9) 100%), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769729483/bg3_zoraop.jpg'); 
             background-size: cover;
             background-position: center top; 
             background-attachment: fixed; 
@@ -165,39 +144,23 @@
 
         .hero-content {
             z-index: 2;
-            /* Padding superior generoso para separar del menú, inferior para separar del borde */
             padding: 140px 20px 60px;
             max-width: 900px;
             width: 100%;
-            height: 100%; /* Ocupa toda la altura disponible */
-            
-            /* Flexbox para alinear todo al fondo */
+            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* CAMBIO: Todo el contenido pegado abajo */
-        }
-
-        .hero h1 {
-            /* CAMBIO ESPECÍFICO: Solo este título usa Kaushan Script */
-            font-family: 'Kaushan Script', cursive; 
-            font-size: 3.0rem; /* Ajustado para que se lea bien en script */
-            margin-bottom: 15px;
-            line-height: 1.2;
-            letter-spacing: 0; /* Las fuentes script no deben tener mucho espaciado */
-            
-            color: rgba(255, 255, 255, 1.0); 
-            -webkit-text-stroke: 0px #333;   
+            justify-content: flex-end; 
         }
         
         .hero h4 {
-             /* CAMBIO: Aplicamos Kaushan Script al h4 también */
              font-family: 'Kaushan Script', cursive; 
-             font-size: 1.5rem; /* Aumentado ligeramente para destacar */
-             letter-spacing: 1px; /* Reducimos el espaciado original de 3px para script */
-             margin-bottom: 15px; /* Espacio antes del párrafo */
+             font-size: 1.5rem;
+             letter-spacing: 1px; 
+             margin-bottom: 15px; 
              color: var(--accent-color);
              text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-             font-weight: 400; /* Script no necesita tanto peso */
+             font-weight: 400; 
         }
 
         .hero p {
@@ -221,22 +184,17 @@
             background-color: rgba(0,0,0,0.3); 
         }
 
-        .btn:hover {
-            background-color: var(--accent-color);
-            color: #000;
-        }
+        .btn:hover { background-color: var(--accent-color); color: #000; }
 
         /* ==========================================================================
-           SECCIÓN REDES SOCIALES (NUEVO DISEÑO PARALLAX)
+           REDES SOCIALES
            ========================================================================== */
         .social-section {
             padding: var(--section-padding);
-            /* FONDO PARALLAX REDES */
-            /* NOTA: Cambia la url de abajo para tu imagen de fondo de redes sociales */
             background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769620010/bg3_kgueup.png');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efecto Parallax */
+            background-attachment: fixed; 
             text-align: center;
             position: relative;
         }
@@ -250,106 +208,66 @@
             margin-top: 50px;
         }
 
-        /* Estilo Circular tipo "Swag" */
         .social-circle {
             width: 120px;
             height: 120px;
-            background-color: var(--accent-color); /* Color dorado solido */
+            background-color: var(--accent-color); 
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .social-circle i {
-            font-size: 3.5rem;
-            color: var(--bg-color); /* Icono oscuro para contraste */
-            transition: color 0.3s;
-        }
-
-        /* Efecto Hover */
-        .social-circle:hover {
-            transform: scale(1.1) translateY(-5px);
-            background-color: #fff; /* Se vuelve blanco al pasar el mouse */
-            box-shadow: 0 0 20px var(--accent-color); /* Resplandor dorado */
-        }
-        
-        .social-circle:hover i {
-            color: var(--accent-color); /* Icono se vuelve dorado */
-        }
+        .social-circle i { font-size: 3.5rem; color: var(--bg-color); transition: color 0.3s; }
+        .social-circle:hover { transform: scale(1.1) translateY(-5px); background-color: #fff; box-shadow: 0 0 20px var(--accent-color); }
+        .social-circle:hover i { color: var(--accent-color); }
 
         /* ==========================================================================
-           SECCIÓN VIDEO YOUTUBE
+           VIDEO / NOSOTROS
            ========================================================================== */
         .video-section {
             padding: var(--section-padding);
-            /* Fondo base claro */
             background-color: #ffffff;
-            /* TEXTURA DIAGONAL: Color #E6E6E6 sobre fondo blanco 
-               NOTA: Aquí están tus cambios con líneas más finas (3px y 4px)
-            */
-            background-image: repeating-linear-gradient(
-                45deg,
-                #ffffff,
-                #ffffff 3px,
-                #e6e6e6 3px,
-                #e6e6e6 4px
-            );
+            background-image: repeating-linear-gradient(45deg, #ffffff, #ffffff 3px, #e6e6e6 3px, #e6e6e6 4px);
             text-align: center;
-            /* Texto oscuro para contraste */
             color: #0a0a0a;
+            overflow: hidden; /* Importante para animaciones que vienen de los lados */
         }
 
-        /* Ajustes de color para título y texto en fondo claro */
-        .video-section h2 {
-            color: #0a0a0a;
-        }
+        .video-section h2 { color: #0a0a0a; }
         
-        /* Contenedor de texto para "Nosotros" */
         .video-content-text {
             max-width: 900px; 
             margin: 0 auto 50px; 
-            text-align: left;/*antenemos centrado para elegancia, o left si prefieres */
+            text-align: left;
         }
         
         .video-content-text p {
             color: #333333;
             font-size: 1.0rem;
-            margin-bottom: 25px; /* Espacio entre párrafos */
+            margin-bottom: 25px; 
             line-height: 1.2;
         }
         
-        /* Párrafo destacado */
-        .video-content-text p.highlight {
-            font-weight: 600;
-            color: #000;
-            font-size: 1.2rem;
-        }
+        .video-content-text p.highlight { font-weight: 600; color: #000; font-size: 1.2rem; }
 
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Ratio 16:9 */
+            padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
             max-width: 1000px;
             margin: 0 auto;
-            border: 1px solid rgba(0,0,0,0.1); /* Borde sutil oscuro */
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2); /* Sombra ajustada para fondo claro */
+            border: 1px solid rgba(0,0,0,0.1); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
         }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         /* ==========================================================================
-           SECCIÓN PAQUETES DE DISEÑO
+           PAQUETES
            ========================================================================== */
         .packages-section {
             padding: var(--section-padding);
@@ -369,7 +287,7 @@
             backdrop-filter: blur(5px);
             padding: 40px;
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px; /* BORDES REDONDEADOS AÑADIDOS */
+            border-radius: 20px; 
             text-align: center;
             position: relative;
             transition: 0.3s;
@@ -381,33 +299,13 @@
             background-color: rgba(10, 10, 10, 0.95);
         }
 
-        .price {
-            font-size: 3.5rem; 
-            font-family: var(--font-heading);
-            color: var(--accent-color);
-            margin: 20px 0;
-        }
-
-        .features {
-            list-style: none;
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .features li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .features li i {
-            color: var(--accent-color);
-            margin-right: 10px;
-            font-size: 0.8rem;
-        }
+        .price { font-size: 3.5rem; font-family: var(--font-heading); color: var(--accent-color); margin: 20px 0; }
+        .features { list-style: none; margin: 30px 0; text-align: left; }
+        .features li { margin-bottom: 15px; display: flex; align-items: center; }
+        .features li i { color: var(--accent-color); margin-right: 10px; font-size: 0.8rem; }
 
         /* ==========================================================================
-           SECCIÓN PORTAFOLIO
+           PORTAFOLIO / SERVICIOS
            ========================================================================== */
         .portfolio-section {
             padding: var(--section-padding);
@@ -451,16 +349,11 @@
             transition: opacity 0.3s ease;
         }
 
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
+        .portfolio-item:hover img { transform: scale(1.1); }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
 
         /* ==========================================================================
-           SECCIÓN CONTACTO
+           CONTACTO
            ========================================================================== */
         .contact-section {
             padding: var(--section-padding);
@@ -468,16 +361,9 @@
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
         }
 
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
+        .contact-container { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 20px; }
+        
         .form-control {
             width: 100%;
             padding: 15px;
@@ -487,63 +373,28 @@
             font-family: var(--font-body);
             font-size: 1rem;
         }
+        .form-control:focus { outline: none; border-color: var(--accent-color); }
+        textarea.form-control { resize: vertical; height: 150px; }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
+        footer { padding: 50px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
 
-        textarea.form-control {
-            resize: vertical;
-            height: 150px;
-        }
-
-        /* ==========================================================================
-           FOOTER
-           ========================================================================== */
-        footer {
-            padding: 50px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.9rem;
-        }
-
-        /* ==========================================================================
-           MEDIA QUERIES
-           ========================================================================== */
         @media (max-width: 768px) {
             h1 { font-size: 2.2rem; } 
             h2 { font-size: 2.5rem; }
-            
             .menu-btn { display: block; }
-            
-            .logo-img { height: 40px; } /* Ajuste de logo en móvil */
-
+            .logo-img { height: 40px; } 
             .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                background: var(--bg-color);
-                flex-direction: column;
-                align-items: center;
-                padding: 40px 0;
-                transition: 0.3s;
+                position: fixed; top: 70px; left: -100%; width: 100%;
+                background: var(--bg-color); flex-direction: column;
+                align-items: center; padding: 40px 0; transition: 0.3s;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
             }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .hero, .packages-section, .social-section {
-                background-attachment: scroll;
-            }
+            .nav-links.active { left: 0; }
             
-            .hero {
-                /* Para móvil, si la pantalla es muy pequeña, mantenemos el espacio pero quizás menos agresivo */
-                padding-bottom: 60px;
-            }
+            /* NOTA: Para ACTIVAR el Parallax en móvil, BORRA la siguiente línea. Para DESACTIVARLO (recomendado), déjala. */
+            .hero, .packages-section, .social-section { background-attachment: scroll; }
+            
+            .hero { padding-bottom: 60px; }
         }
     </style>
 </head>
@@ -551,11 +402,9 @@
 
     <!-- NAVEGACIÓN -->
     <nav>
-        <!-- Logo Imagen -->
         <a href="#inicio">
             <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769651681/LOGO_WEB_i4dy4k.png" alt="Pepitoria Estudio" class="logo-img">
         </a>
-        
         <div class="menu-btn" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </div>
@@ -572,8 +421,11 @@
     <!-- SECCIÓN DE INICIO (HERO) -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <!-- GRUPO INFERIOR: Todo el texto abajo para dejar cara libre -->
-            <div class="hero-bottom">
+            <!-- 
+                NOTA: Aquí puedes cambiar la dirección de animación del Hero.
+                Opciones: 'from-left', 'from-right', 'from-top', 'from-bottom' 
+            -->
+            <div class="hero-bottom reveal from-bottom">
                 <h4>Estrategia Visual & Inteligencia Artificial</h4>
                 <p>Fusionamos creatividad humana con algoritmos de IA para crear identidades visuales impactantes y sitios web que convierten. Especialistas en el futuro de la publicidad digital.</p>
                 <a href="#contacto" class="btn">Cotizar Proyecto</a>
@@ -581,61 +433,62 @@
         </div>
     </section>
 
-    <!-- SECCIÓN REDES SOCIALES (NUEVA) -->
+    <!-- SECCIÓN REDES SOCIALES -->
     <section id="redes" class="social-section">
-        <h2>SÍGUENOS EN NUESTRAS REDES</h2>
+        <!-- NOTA: Cambia 'from-top' por la dirección que prefieras para el título -->
+        <h2 class="reveal from-top">SÍGUENOS EN NUESTRAS REDES</h2>
         
         <div class="social-grid">
-            <!-- TikTok -->
-            <a href="#" class="social-circle">
+            <!-- 
+               NOTA: Aquí puedes cambiar la dirección de entrada de los iconos.
+               'delay-200', 'delay-400' son retrasos para que no salgan todos a la vez.
+            -->
+            <a href="#" class="social-circle reveal from-bottom">
                 <i class="fa-brands fa-tiktok"></i>
             </a>
-            
-            <!-- YouTube -->
-            <a href="#" class="social-circle">
+            <a href="#" class="social-circle reveal from-bottom delay-200">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            
-            <!-- Instagram -->
-            <a href="#" class="social-circle">
+            <a href="#" class="social-circle reveal from-bottom delay-400">
                 <i class="fa-brands fa-instagram"></i>
             </a>
-            
-            <!-- Facebook -->
-            <a href="#" class="social-circle">
+            <a href="#" class="social-circle reveal from-bottom delay-600">
                 <i class="fa-brands fa-facebook"></i>
             </a>
         </div>
     </section>
 
-    <!-- SECCIÓN VIDEO -->
+    <!-- SECCIÓN NOSOTROS (VIDEO) -->
     <section id="video" class="video-section">
-        <h2>NOSOTROS</h2>
+        <!-- NOTA: Animación título 'Nosotros' -->
+        <h2 class="reveal from-left">NOSOTROS</h2>
         
         <div class="video-content-text">
-            <p>Nos especializamos en diseño de contenido publicitario para marcas, creando posts y anuncios visuales de alto impacto pensados para redes sociales y campañas digitales.</p>
+            <!-- NOTA: Animación párrafos -->
+            <p class="reveal from-left">Nos especializamos en diseño de contenido publicitario para marcas, creando posts y anuncios visuales de alto impacto pensados para redes sociales y campañas digitales.</p>
             
-            <p>Diseñamos piezas gráficas y videos que captan atención, comunican el mensaje correcto y motivan a la acción, utilizando inteligencia artificial integrada con criterio creativo humano para lograr resultados más rápidos, consistentes y efectivos.</p>
+            <p class="reveal from-left delay-200">Diseñamos piezas gráficas y videos que captan atención, comunican el mensaje correcto y motivan a la acción, utilizando inteligencia artificial integrada con criterio creativo humano para lograr resultados más rápidos, consistentes y efectivos.</p>
             
-            <p>Como valor agregado, ofrecemos el desarrollo de páginas web de una sola página, diseñadas para complementar la publicidad digital, reforzar la credibilidad de la marca y convertir el tráfico de anuncios en clientes reales.</p>
+            <p class="reveal from-left delay-400">Como valor agregado, ofrecemos el desarrollo de páginas web de una sola página, diseñadas para complementar la publicidad digital, reforzar la credibilidad de la marca y convertir el tráfico de anuncios en clientes reales.</p>
             
-            <p class="highlight">Nuestro enfoque no es solo estético: creamos publicidad visual estratégica, optimizada para redes sociales, anuncios pagados y crecimiento de marca.</p>
+            <p class="highlight reveal from-right">Nuestro enfoque no es solo estético: creamos publicidad visual estratégica, optimizada para redes sociales, anuncios pagados y crecimiento de marca.</p>
             
-            <p>Trabajamos con negocios que entienden que una buena imagen vende, y que el diseño correcto puede marcar la diferencia entre pasar desapercibido o destacar.</p>
+            <p class="reveal from-left delay-600">Trabajamos con negocios que entienden que una buena imagen vende, y que el diseño correcto puede marcar la diferencia entre pasar desapercibido o destacar.</p>
         </div>
         
-        <div class="video-container">
+        <!-- NOTA: Animación contenedor de video -->
+        <div class="video-container reveal from-bottom">
             <iframe src="https://www.youtube.com/embed/cohXMhfMr5c?si=ImmersiveView" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </section>
 
-    <!-- SECCIÓN PAQUETES (Imagen con opacidad 0.3 ajustada) -->
+    <!-- SECCIÓN PAQUETES -->
     <section id="paquetes" class="packages-section" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769615061/bg2_tnoy8y.png'); background-attachment: fixed; background-size: cover; background-position: center;">
-        <h2>DISEÑOS PARA REDES SOCIALES</h2>
+        <h2 class="reveal from-top">DISEÑOS PARA REDES SOCIALES</h2>
         <div class="packages-grid">
             
-            <!-- Paquete 1 -->
-            <div class="package-card">
+            <!-- NOTA: Animación tarjetas de precios -->
+            <div class="package-card reveal from-bottom">
                 <h3>Startup</h3>
                 <div class="price">Q1,000</div>
                 <p>Ideal para nuevos emprendimientos que necesitan identidad visual rápida.</p>
@@ -648,8 +501,7 @@
                 <a href="#contacto" class="btn">Elegir</a>
             </div>
 
-            <!-- Paquete 2 (Destacado) -->
-            <div class="package-card" style="border-color: var(--accent-color); transform: scale(1.05);">
+            <div class="package-card reveal from-bottom delay-200" style="border-color: var(--accent-color); transform: scale(1.05);">
                 <h3 style="color: var(--accent-color);">Professional</h3>
                 <div class="price">Q2,500</div>
                 <p>Solución completa para PYMES buscando crecimiento digital.</p>
@@ -662,8 +514,7 @@
                 <a href="#contacto" class="btn" style="background: var(--accent-color); color: #000;">Elegir</a>
             </div>
 
-            <!-- Paquete 3 -->
-            <div class="package-card">
+            <div class="package-card reveal from-bottom delay-400">
                 <h3>PRO</h3>
                 <div class="price">Q4,000+</div>
                 <p>Dominio total del mercado con herramientas avanzadas.</p>
@@ -679,105 +530,87 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PORTAFOLIO -->
+    <!-- SECCIÓN SERVICIOS (PORTAFOLIO) -->
     <section id="portafolio" class="portfolio-section">
-        <h2>SERVICIOS</h2>
-		<p style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.0rem;">
+        <h2 class="reveal from-top">SERVICIOS</h2>
+		<p class="reveal from-bottom" style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.0rem;">
             Puedes contratar cualquier servicio de forma individual: desde un diseño de post o reel animado, hasta piezas publicitarias o contenido específico. Elige solo lo que necesitas, cuando lo necesitas.
         </p>
 		
         <div class="portfolio-grid">
-            
-            <!-- Item 1 -->
-            <div class="portfolio-item">
+            <!-- NOTA: Animación items portafolio. Puedes jugar con 'from-left' y 'from-right' -->
+            <div class="portfolio-item reveal from-left">
                 <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769702921/ia_desing_nvoiw8.png">
                 <div class="portfolio-overlay">
                     <h3>Diseño + IA</h3>
                     <p>Efectos Especiales</p>
                 </div>
             </div>
-
-            <!-- Item 2 -->
-            <div class="portfolio-item">
+            <div class="portfolio-item reveal from-bottom delay-200">
                 <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769704529/social_media_n2c68y.png" alt="Diseño Web">
                 <div class="portfolio-overlay">
                     <h3>SOCIAL MEDIA</h3>
                     <p>Publicaciones Y Reels</p>
                 </div>
             </div>
-
-            <!-- Item 3 -->
-            <div class="portfolio-item">
+            <div class="portfolio-item reveal from-right delay-400">
                 <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769704921/logos_koqydg.png" alt="Campaña Social">
                 <div class="portfolio-overlay">
                     <h3>DISEÑO DE LOGO</h3>
                     <p>Imagen de Marca</p>
                 </div>
             </div>
-
-            <!-- Item 4 -->
-            <div class="portfolio-item">
+            <div class="portfolio-item reveal from-left">
                 <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769705297/paginaweb_js4vcj.png" alt="App UI">
                 <div class="portfolio-overlay">
                     <h3>PAGINAS WEB</h3>
                     <p>Landing pages</p>
                 </div>
             </div>
-             <!-- Item 5 -->
-             <div class="portfolio-item">
+            <div class="portfolio-item reveal from-bottom delay-200">
                 <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769706248/publicidad_tkk9fe.png" alt="Streaming">
                 <div class="portfolio-overlay">
                     <h3>PUBLICIDAD</h3>
                     <p>Diseño Publicitario</p>
                 </div>
             </div>
-             <!-- Item 6 -->
-             <div class="portfolio-item">
+            <div class="portfolio-item reveal from-right delay-400">
                 <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769706675/video_pfjrhn.png" alt="Hardware">
                 <div class="portfolio-overlay">
                     <h3>ANIMACIÓN DE VIDEO</h3>
                     <p>Video Publicitario</p>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- SECCIÓN CONTACTO -->
     <section id="contacto" class="contact-section">
-        <h2>Inicia tu Proyecto</h2>
-        <div class="contact-container">
+        <h2 class="reveal from-top">Inicia tu Proyecto</h2>
+        <div class="contact-container reveal from-bottom">
             <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Gracias por tu mensaje. Te contactaremos pronto.');">
-                
                 <div class="form-group">
                     <input type="text" name="nombre" class="form-control" placeholder="Tu Nombre Completo" required>
                 </div>
-                
                 <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Tu Correo Electrónico" required>
                 </div>
-                
                 <div class="form-group">
                     <input type="tel" name="telefono" class="form-control" placeholder="Tu Teléfono">
                 </div>
-                
                 <div class="form-group">
                     <textarea name="mensaje" class="form-control" placeholder="Cuéntanos sobre tu proyecto o idea..." required></textarea>
                 </div>
-                
                 <div style="text-align: center;">
                     <button type="submit" class="btn">Enviar Mensaje</button>
                 </div>
-
             </form>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <!-- Logo Imagen en Footer -->
         <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769651681/LOGO_WEB_i4dy4k.png" alt="Pepitoria Estudio" class="logo-img">
-        
         <p>&copy; 2026 Pepitoria Estudio. Todos los derechos reservados.</p>
         <div style="margin-top: 20px;">
             <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-youtube"></i></a>
@@ -787,13 +620,15 @@
         </div>
     </footer>
 
-    <!-- SCRIPT (INTERACTIVIDAD) -->
+    <!-- SCRIPT (INTERACTIVIDAD Y ANIMACIONES) -->
     <script>
+        // Menú hamburguesa
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         }
 
+        // Cambio de estilo de navegación al scroll
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
@@ -804,7 +639,28 @@
                 nav.style.boxShadow = 'none';
             }
         });
+
+        // ANIMACIONES AL SCROLL (INTERSECTION OBSERVER)
+        // Este script detecta cuando los elementos con la clase "reveal" entran en pantalla
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); // Agrega la clase que hace visible al elemento
+                    observer.unobserve(entry.target); // Deja de observar una vez animado (para que no se repita)
+                }
+            });
+        }, observerOptions);
+
+        // Selecciona todos los elementos con la clase .reveal y empieza a observarlos
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
-
