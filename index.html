@@ -3,663 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pepitoria Estudio | Diseño & Marketing Digital</title>
+    <title>Pepitoria Estudio | Agencia Radical de Diseño e IA</title>
     
-    <!-- FUENTES: Google Fonts (Montserrat para cuerpo, Anton para títulos) -->
+    <!-- FUENTES (Montserrat para el estilo bold/brutalista y Roboto para lectura) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Importamos AMBAS fuentes de títulos + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
-    <!-- ICONOS: FontAwesome para redes sociales -->
+    <!-- ÍCONOS (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- ESTILOS (CSS) -->
-    <style>
-        /* ==========================================================================
-           CONFIGURACIÓN GLOBAL
-           ========================================================================== */
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #e0e0e0;
-            --accent-color: #d4af37;
-            --secondary-bg: #141414;
-            --font-heading: 'Anton', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-            --section-padding: 100px 20px;
-        }
+    <!-- TAILWIND CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; } /* overflow-x hidden evita scroll lateral por animaciones */
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* TIPOGRAFÍA */
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            font-weight: 400;
-            color: #ffffff;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        h2 {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        
-        h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
-            margin: 20px auto 0;
-        }
-
-        p { font-weight: 300; color: #b0b0b0; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* ==========================================================================
-           ANIMACIONES AL SCROLL (AQUÍ SE DEFINEN LOS MOVIMIENTOS)
-           ========================================================================== */
-        /* Clase base oculta */
-        .reveal {
-            opacity: 0;
-            transition: all 1s ease-out; /* Duración y suavidad de la animación */
-        }
-
-        /* Cuando JS añade la clase 'active', el elemento se muestra */
-        .reveal.active {
-            opacity: 1;
-            transform: translate(0, 0); /* Vuelve a su posición original */
-        }
-
-        /* --------------------------------------------------------------------------
-           NOTA: Estas son las clases que controlan la dirección.
-           Si quieres cambiar la distancia del movimiento, cambia los pixeles (px).
-           - translateX: Movimiento horizontal (negativo=izquierda, positivo=derecha)
-           - translateY: Movimiento vertical (negativo=arriba, positivo=abajo)
-           --------------------------------------------------------------------------
-        */
-        .from-left { transform: translateX(-100px); }   /* Viene de la izquierda */
-        .from-right { transform: translateX(100px); }   /* Viene de la derecha */
-        .from-bottom { transform: translateY(100px); }  /* Viene de abajo */
-        .from-top { transform: translateY(-100px); }    /* Viene de arriba */
-
-        /* Retrasos para elementos en grupo (para que no aparezcan todos al mismo tiempo) */
-        .delay-200 { transition-delay: 0.2s; }
-        .delay-400 { transition-delay: 0.4s; }
-        .delay-600 { transition-delay: 0.6s; }
-
-        /* ==========================================================================
-           NAVEGACIÓN
-           ========================================================================== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .logo-img { height: 50px; width: auto; display: block; }
-        footer .logo-img { margin: 0 auto 20px; height: 60px; }
-
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
-        .nav-links a:hover { color: var(--accent-color); }
-
-        .menu-btn { display: none; font-size: 1.5rem; cursor: pointer; }
-
-        /* ==========================================================================
-           HERO
-           ========================================================================== */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background-image: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.9) 100%), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769729483/bg3_zoraop.jpg'); 
-            background-size: cover;
-            background-position: center top; 
-            background-attachment: fixed; 
-        }
-
-        .hero-content {
-            z-index: 2;
-            padding: 140px 20px 60px;
-            max-width: 900px;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; 
-        }
-        
-        .hero h4 {
-             font-family: 'Kaushan Script', cursive; 
-             font-size: 1.5rem;
-             letter-spacing: 1px; 
-             margin-bottom: 15px; 
-             color: var(--accent-color);
-             text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-             font-weight: 400; 
-        }
-
-        .hero p {
-            font-size: 0.95rem; 
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 35px; 
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            background-color: rgba(0,0,0,0.3); 
-        }
-
-        .btn:hover { background-color: var(--accent-color); color: #000; }
-
-        /* ==========================================================================
-           REDES SOCIALES
-           ========================================================================== */
-        .social-section {
-            padding: var(--section-padding);
-            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769620010/bg3_kgueup.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; 
-            text-align: center;
-            position: relative;
-        }
-
-        .social-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .social-circle {
-            width: 120px;
-            height: 120px;
-            background-color: var(--accent-color); 
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .social-circle i { font-size: 3.5rem; color: var(--bg-color); transition: color 0.3s; }
-        .social-circle:hover { transform: scale(1.1) translateY(-5px); background-color: #fff; box-shadow: 0 0 20px var(--accent-color); }
-        .social-circle:hover i { color: var(--accent-color); }
-
-        /* ==========================================================================
-           VIDEO / NOSOTROS
-           ========================================================================== */
-        .video-section {
-            padding: var(--section-padding);
-            background-color: #ffffff;
-            background-image: repeating-linear-gradient(45deg, #ffffff, #ffffff 3px, #e6e6e6 3px, #e6e6e6 4px);
-            text-align: center;
-            color: #0a0a0a;
-            overflow: hidden; /* Importante para animaciones que vienen de los lados */
-        }
-
-        .video-section h2 { color: #0a0a0a; }
-        
-        .video-content-text {
-            max-width: 900px; 
-            margin: 0 auto 50px; 
-            text-align: left;
-        }
-        
-        .video-content-text p {
-            color: #333333;
-            font-size: 1.0rem;
-            margin-bottom: 25px; 
-            line-height: 1.2;
-        }
-        
-        .video-content-text p.highlight { font-weight: 600; color: #000; font-size: 1.2rem; }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 1px solid rgba(0,0,0,0.1); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
-        }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* ==========================================================================
-           PAQUETES
-           ========================================================================== */
-        .packages-section {
-            padding: var(--section-padding);
-            position: relative;
-        }
-
-        .packages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .package-card {
-            background-color: rgba(40, 40, 40, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px; 
-            text-align: center;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        .package-card:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
-            background-color: rgba(10, 10, 10, 0.95);
-        }
-
-        .price { font-size: 3.5rem; font-family: var(--font-heading); color: var(--accent-color); margin: 20px 0; }
-        .features { list-style: none; margin: 30px 0; text-align: left; }
-        .features li { margin-bottom: 15px; display: flex; align-items: center; }
-        .features li i { color: var(--accent-color); margin-right: 10px; font-size: 0.8rem; }
-
-        /* ==========================================================================
-           PORTAFOLIO / SERVICIOS
-           ========================================================================== */
-        .portfolio-section {
-            padding: var(--section-padding);
-            background-color: var(--bg-color);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-            group: cursor;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-
-        /* ==========================================================================
-           CONTACTO
-           ========================================================================== */
-        .contact-section {
-            padding: var(--section-padding);
-            background-color: var(--secondary-bg);
-            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-        }
-
-        .contact-container { max-width: 600px; margin: 0 auto; }
-        .form-group { margin-bottom: 20px; }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            background: var(--bg-color);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            font-family: var(--font-body);
-            font-size: 1rem;
-        }
-        .form-control:focus { outline: none; border-color: var(--accent-color); }
-        textarea.form-control { resize: vertical; height: 150px; }
-
-        footer { padding: 50px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; } 
-            h2 { font-size: 2.5rem; }
-            .menu-btn { display: block; }
-            .logo-img { height: 40px; } 
-            .nav-links {
-                position: fixed; top: 70px; left: -100%; width: 100%;
-                background: var(--bg-color); flex-direction: column;
-                align-items: center; padding: 40px 0; transition: 0.3s;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+    <!-- CONFIGURACIÓN DE COLORES PREMIUM -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-black': '#111111',       // Fondo oscuro principal de tu plantilla
+                        'brand-dark-gray': '#1a1a1a',   // Bloques secundarios oscuros
+                        'brand-white': '#ffffff',       // Textos y fondos claros
+                        'brand-pepilla': '#39ff14',     // Verde pepitilla neón para acentos de IA
+                        'brand-hardware': '#f2994a',    // Naranja industrial mate para componentes de la demo
+                    },
+                    fontFamily: {
+                        'montserrat': ['"Montserrat"', 'sans-serif'], 
+                        'roboto': ['"Roboto"', 'sans-serif'],
+                        'mono': ['"Share Tech Mono"', 'monospace'], // Fuente técnica para los widgets de IA
+                    }
+                }
             }
-            .nav-links.active { left: 0; }
-            
-            /* NOTA: Para ACTIVAR el Parallax en móvil, BORRA la siguiente línea. Para DESACTIVARLO (recomendado), déjala. */
-            .hero, .packages-section, .social-section { background-attachment: scroll; }
-            
-            .hero { padding-bottom: 60px; }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background-color: #111111;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Simulación de la perspectiva 3D isométrica de tu logo para el header */
+        .logo-3d {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            transform: skewY(-4deg) rotate(-2deg);
+            text-shadow: 
+                1px 1px 0px #222, 2px 2px 0px #222, 3px 3px 0px #222, 
+                4px 4px 0px #39ff14, 5px 5px 0px #39ff14, 6px 6px 0px #39ff14;
+        }
+
+        /* Estilo para las perillas giratorias de hardware */
+        .knob {
+            transform-origin: center;
+            transition: transform 0.1s ease-out;
+            cursor: grab;
+        }
+        .knob:active { cursor: grabbing; }
+
+        /* Efecto de curvatura y líneas de escaneo para la Consola CRT de tus videos virales */
+        .crt-screen {
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(57,255,20,0.2);
+        }
+        .crt-screen::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 200, 0.06));
+            z-index: 2;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+/* ESTILOS PARA LAS FRANJAS SEPARADORAS PARALLAX */
+        .separador-parallax {
+            height: 300px; /* Altura fija tipo franja delgada */
+            background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Imágenes específicas para cada separador */
+        .bg-separador-1 {
+            background-image: url('images/moon.jpeg');
+        }
+        .bg-separador-2 {
+            background-image: url('images/mar.jpeg');
+        }
+        .bg-separador-3 {
+            background-image: url('images/tikal.jpeg');
         }
     </style>
 </head>
-<body>
+<body class="text-gray-300">
 
-    <!-- NAVEGACIÓN -->
-    <nav>
-        <a href="#inicio">
-            <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769651681/LOGO_WEB_i4dy4k.png" alt="Pepitoria Estudio" class="logo-img">
-        </a>
-        <div class="menu-btn" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="nav-links">
-            <a href="#inicio" onclick="toggleMenu()">Inicio</a>
-            <a href="#redes" onclick="toggleMenu()">Social</a>
-            <a href="#video" onclick="toggleMenu()">Nosotros</a>
-            <a href="#paquetes" onclick="toggleMenu()">Servicios</a>
-            <a href="#portafolio" onclick="toggleMenu()">Portafolio</a>
-            <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+    <!-- NAVBAR COMPACTO CON LOGO LINEAL Y ANIMACIÓN NEÓN (HOVER) -->
+    <nav id="navbar" class="fixed w-full z-40 top-0 py-4 text-white bg-brand-black bg-opacity-95 backdrop-blur-md border-b border-neutral-900 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            
+            <!-- LOGO EN FORMATO LINEAL (COMPACTO Y HORIZONTAL) -->
+            <a href="#" class="font-montserrat font-black text-sm tracking-[0.2em] uppercase transition-colors duration-300 hover:text-brand-pepilla flex items-center space-x-2">
+                <span>PEPITORIA</span>
+                <span class="text-brand-pepilla font-normal bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded text-[10px] tracking-widest">ESTUDIO</span>
+            </a>
+
+            <!-- MENÚ PRINCIPAL CON ANIMACIÓN DE RECUADRO NEÓN -->
+            <div class="hidden md:flex space-x-2 text-[11px] font-bold tracking-widest uppercase font-montserrat">
+                
+                <a href="#anuncios" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-hardware hover:text-brand-hardware hover:shadow-[0_0_10px_rgba(242,153,74,0.3)]">
+                    1. Anuncios & Diseño
+                </a>
+                
+                <a href="#landings" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-white hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                    2. Páginas Web
+                </a>
+                
+                <a href="#humor-ia" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-pepilla hover:text-brand-pepilla hover:shadow-[0_0_10px_rgba(57,255,20,0.3)]">
+                    3. Laboratorio IA
+                </a>
+                
+                <a href="#contacto" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-pepilla hover:text-brand-pepilla hover:shadow-[0_0_10px_rgba(57,255,20,0.3)]">
+                    4. Cotizar
+                </a>
+
+            </div>
         </div>
     </nav>
 
-    <!-- SECCIÓN DE INICIO (HERO) -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <!-- 
-                NOTA: Aquí puedes cambiar la dirección de animación del Hero.
-                Opciones: 'from-left', 'from-right', 'from-top', 'from-bottom' 
-            -->
-            <div class="hero-bottom reveal from-bottom">
-                <h4>Estrategia Visual & Inteligencia Artificial</h4>
-                <p>Fusionamos creatividad humana con algoritmos de IA para crear identidades visuales impactantes y sitios web que convierten. Especialistas en el futuro de la publicidad digital.</p>
-                <a href="#contacto" class="btn">Cotizar Proyecto</a>
+  <!-- SECCIÓN 1: REPRODUCTOR DE PORTAFOLIO CON BOTONERA ANALÓGICA -->
+    <section id="anuncios" class="min-h-screen pt-32 pb-20 flex items-center bg-brand-black border-b border-gray-900">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Texto Izquierda (Venta de Servicios) -->
+            <div class="lg:col-span-5">
+                <span class="text-brand-pepilla font-mono text-sm tracking-widest block mb-2">// PROPUESTA COMERCIAL</span>
+                <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-6">
+                    DISEÑO RADICAL.<br>ANUNCIOS QUE<br>CONVIERTEN.
+                </h1>
+                <p class="text-gray-400 text-sm md:text-base max-w-lg mb-8 leading-relaxed font-roboto">
+                    Creamos piezas de diseño gráfico, flyers de alto impacto e identidades visuales memorables. Además, producimos anuncios en video optimizados para capturar la atención de tu cliente ideal en redes sociales de forma inmediata.
+                </p>
+                <div class="flex space-x-4">
+                    <div class="bg-brand-dark-gray border border-gray-800 px-4 py-2 rounded text-center">
+                        <span class="block text-white font-black text-xl font-montserrat">29 AÑOS</span>
+                        <span class="text-xs text-gray-500 font-mono">De Legado Creativo</span>
+                    </div>
+                </div>
             </div>
+
+            <!-- COMPONENTE INTERACTIVO DE HARDWARE (Botonera Separada) -->
+            <div class="lg:col-span-7 flex justify-center">
+                <div class="w-full max-w-xl bg-brand-hardware p-6 rounded-3xl shadow-2xl border-4 border-black text-black relative">
+                    <div class="flex justify-between items-center mb-4 border-b-2 border-black pb-2">
+                        <span class="font-mono font-bold text-xs tracking-wider">PEPITORIA CONSOLE UNIT // PORTFOLIO v3.5</span>
+                        <div class="flex space-x-1">
+                            <span class="w-2 h-2 rounded-full bg-black animate-ping"></span>
+                            <span class="w-2 h-2 rounded-full bg-black"></span>
+                        </div>
+                    </div>
+
+                    <!-- El Reproductor de Pantalla (OPTIMIZADO PARA VIDEO REAL) -->
+                    <div class="bg-black rounded-xl p-2 flex flex-col relative mb-6 border border-neutral-800">
+                        <div class="aspect-video bg-neutral-950 rounded overflow-hidden relative flex items-center justify-center border border-neutral-900">
+                            <!-- Cambio clave: Etiqueta <video> nativa en lugar de <img> -->
+                            <video id="mediaDisplay" autoplay loop muted playsinline class="w-full h-full object-cover transition-opacity duration-150 opacity-1"></video>
+                        </div>
+                        
+                        <!-- Telemetría Dinámica de la Pantalla -->
+                        <div class="mt-2 flex justify-between items-end font-mono text-[10px] text-brand-pepilla p-1.5 bg-neutral-900 rounded border border-neutral-800">
+                            <div>
+                                <span id="mediaType" class="block text-gray-400">SECTOR: -</span>
+                                <span id="mediaTitle" class="block font-bold mt-0.5 text-sm text-white">Selecciona una categoría...</span>
+                            </div>
+                            <div id="mediaClient" class="text-right text-yellow-500 font-bold">
+                                FORMATO: -
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOTONERA ANALÓGICA CLASIFICADA -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        
+                        <!-- Columna 1: Anuncios Publicitarios -->
+                        <div class="bg-neutral-900 bg-opacity-95 p-4 rounded-xl border-2 border-black shadow-inner">
+                            <span class="text-[10px] font-mono font-black text-brand-hardware block mb-3 border-b border-neutral-800 pb-1 uppercase tracking-wider">● 1. Anuncios Publicitarios</span>
+                            <div class="flex flex-col space-y-2">
+                                <button onclick="selectProject('anuncios', 0, this)" class="portfolio-btn bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs py-2 px-3 rounded border border-neutral-700 text-left flex items-center justify-between active:scale-95 transition-all">
+                                    <span>🍔 Negocios de Comida</span>
+                                    <span class="w-2 h-2 rounded-full bg-neutral-600 indicator"></span>
+                                </button>
+                                <button onclick="selectProject('anuncios', 1, this)" class="portfolio-btn bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs py-2 px-3 rounded border border-neutral-700 text-left flex items-center justify-between active:scale-95 transition-all">
+                                    <span>🛍️ Tiendas & Ventas</span>
+                                    <span class="w-2 h-2 rounded-full bg-neutral-600 indicator"></span>
+                                </button>
+                                <button onclick="selectProject('anuncios', 2, this)" class="portfolio-btn bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs py-2 px-3 rounded border border-neutral-700 text-left flex items-center justify-between active:scale-95 transition-all">
+                                    <span>💼 Servicios Profesionales</span>
+                                    <span class="w-2 h-2 rounded-full bg-neutral-600 indicator"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Columna 2: Branding y Diseños -->
+                        <div class="bg-neutral-900 bg-opacity-95 p-4 rounded-xl border-2 border-black shadow-inner">
+                            <span class="text-[10px] font-mono font-black text-brand-pepilla block mb-3 border-b border-neutral-800 pb-1 uppercase tracking-wider">● 2. Branding & Corporativo</span>
+                            <div class="flex flex-col space-y-2">
+                                <button onclick="selectProject('branding', 0, this)" class="portfolio-btn bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs py-2 px-3 rounded border border-neutral-700 text-left flex items-center justify-between active:scale-95 transition-all">
+                                    <span>📐 Branding & Logos</span>
+                                    <span class="w-2 h-2 rounded-full bg-neutral-600 indicator"></span>
+                                </button>
+                                <button onclick="selectProject('branding', 1, this)" class="portfolio-btn bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs py-2 px-3 rounded border border-neutral-700 text-left flex items-center justify-between active:scale-95 transition-all">
+                                    <span>🖨️ Flyers & Promocionales</span>
+                                    <span class="w-2 h-2 rounded-full bg-neutral-600 indicator"></span>
+                                </button>
+                                <button onclick="selectProject('branding', 2, this)" class="portfolio-btn bg-neutral-800 hover:bg-neutral-700 text-white font-mono text-xs py-2 px-3 rounded border border-neutral-700 text-left flex items-center justify-between active:scale-95 transition-all">
+                                    <span>🏙️ Vías Públicas & Mupies</span>
+                                    <span class="w-2 h-2 rounded-full bg-neutral-600 indicator"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- SECCIÓN REDES SOCIALES -->
-    <section id="redes" class="social-section">
-        <!-- NOTA: Cambia 'from-top' por la dirección que prefieras para el título -->
-        <h2 class="reveal from-top">SÍGUENOS EN NUESTRAS REDES</h2>
+<!-- SEPARADOR PARALLAX 1 -->
+    <div class="separador-parallax bg-separador-1">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <span class="text-xs font-mono tracking-[0.3em] text-brand-pepilla uppercase font-bold">// HIGH INTENSITY CREATIVE AREA</span>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2: PÁGINAS WEB Y LANDING PAGES (Estructura de Cuadrícula Cruzada de NIGO) -->
+    <section id="landings" class="bg-brand-black text-white">
         
-        <div class="social-grid">
-            <!-- 
-               NOTA: Aquí puedes cambiar la dirección de entrada de los iconos.
-               'delay-200', 'delay-400' son retrasos para que no salgan todos a la vez.
-            -->
-            <a href="#" class="social-circle reveal from-bottom">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <a href="#" class="social-circle reveal from-bottom delay-200">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="#" class="social-circle reveal from-bottom delay-400">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" class="social-circle reveal from-bottom delay-600">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
+        <!-- PARTE 1: INFORMACIÓN DE LANDING PAGES (Texto Izq, Imagen Der con Fondo Oscuro) -->
+        <div class="flex flex-col md:flex-row">
+            <!-- Bloque de Texto (Izquierda) -->
+            <div class="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-brand-black">
+                <h3 class="font-montserrat font-bold text-sm text-brand-pepilla mb-2 uppercase tracking-widest">// INGENIERÍA FRONTEND</h3>
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-4 font-montserrat tracking-tight leading-none text-white">
+                    LANDING PAGES<br>DE ALTA FIDELIDAD
+                </h2>
+                <div class="title-line-left bg-white my-6"></div>
+                <p class="text-gray-400 mb-6 leading-relaxed font-roboto text-sm md:text-base">
+                    Construimos páginas de aterrizaje estructuradas de forma limpia en código nativo, optimizadas para conversiones rápidas y preparadas para capturar clientes potenciales. Diseños no convencionales que cargan al instante y retienen la atención.
+                </p>
+                <!-- Precio Destacado en Quetzales -->
+                <div class="mb-8 p-4 bg-brand-dark-gray border border-neutral-800 rounded-xl max-w-xs">
+                    <span class="text-xs text-gray-500 font-mono block uppercase tracking-wider">Inversión Inicial</span>
+                    <span class="text-3xl font-black text-brand-pepilla font-montserrat block mt-1">DESDE Q1,500</span>
+                </div>
+                <a href="#contacto" class="border-2 border-white text-white px-8 py-3 text-xs font-black uppercase tracking-widest w-max hover:bg-white hover:text-black transition-colors font-montserrat">
+                    Cotizar Mi Landing
+                </a>
+            </div>
+            
+            <!-- Bloque de Imagen (Derecha) -->
+            <div class="w-full md:w-1/2 h-96 md:h-auto relative bg-neutral-900">
+                <!-- NOTA: Aquí irá tu imagen con varias pestañas de diseños de Landing Pages -->
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pestañas de Diseños Landing Page" class="w-full h-full object-cover">
+                <!-- Overlay sutil con estética de la agencia -->
+                <div class="absolute inset-0 bg-brand-black bg-opacity-20"></div>
+            </div>
+        </div>
+
+        <!-- PARTE 2: INFRAESTRUCTURA INCLUIDA (Imagen Izq, Texto Der con Fondo Blanco de NIGO) -->
+        <div class="flex flex-col md:flex-row bg-white text-brand-black">
+            <!-- Bloque de Imagen (Izquierda) -->
+            <div class="w-full md:w-1/2 h-96 md:h-auto order-2 md:order-1 bg-neutral-100">
+                <!-- NOTA: Aquí irá tu imagen de Hosting, Dominio y Cuentas de Correo -->
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hosting, Dominio y Servidores" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Bloque de Texto (Derecha) -->
+            <div class="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center order-1 md:order-2 bg-white">
+                <h3 class="font-montserrat font-bold text-sm text-gray-500 mb-2 uppercase tracking-widest">// TODO INCLUIDO</h3>
+                <h2 class="text-4xl md:text-5xl font-black uppercase mb-4 font-montserrat tracking-tight leading-none text-brand-black">
+                    INFRAESTRUCTURA<br>PREMIUM COMPLETA
+                </h2>
+                <div class="title-line-left bg-black my-6"></div>
+                <p class="text-gray-600 mb-8 leading-relaxed font-roboto text-sm md:text-base">
+                    No te preocupes por configuraciones técnicas complejas. Todas nuestras soluciones web incluyen la base necesaria lista para operar de inmediato de forma profesional en internet por un año completo:
+                </p>
+                <!-- Lista de Características Técnicas -->
+                <ul class="space-y-3 font-mono text-xs md:text-sm text-neutral-800 mb-8">
+                    <li class="flex items-center"><i class="fas fa-globe text-brand-hardware mr-3 text-base"></i> Dominio propio (.com o similar) por 1 año</li>
+                    <li class="flex items-center"><i class="fas fa-server text-brand-hardware mr-3 text-base"></i> Hosting de alta velocidad por 1 año</li>
+                    <li class="flex items-center"><i class="fas fa-envelope text-brand-hardware mr-3 text-base"></i> Cuentas de correo electrónico corporativas</li>
+                </ul>
+                <a href="#contacto" class="border-2 border-black text-black px-8 py-3 text-xs font-black uppercase tracking-widest w-max hover:bg-black hover:text-white transition-colors font-montserrat">
+                    Ver Más Detalles
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+<!-- SEPARADOR PARALLAX 2 -->
+    <div class="separador-parallax bg-separador-2">
+        <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+            <span class="text-xs font-mono tracking-[0.3em] text-white uppercase font-bold">// ARCHITECTURAL CODE STRUCTURE // 100% NATIVE</span>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 3: LABORATORIO DE IA Y HUMOR VIRAL (Con videos reales en bucle) -->
+    <section id="humor-ia" class="min-h-screen py-20 bg-brand-dark-gray flex items-center border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            
+            <!-- Encabezado y Texto Descriptivo con Zona de Colaboraciones -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-pepilla font-mono text-sm tracking-widest block mb-2">// EXPERIMENTACIÓN VIRAL</span>
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tighter">LABORATORIO DE HUMOR & IA</h2>
+                <p class="text-gray-400 text-sm mt-4 font-roboto leading-relaxed">
+                    Nuestra carta de presentación más potente son los contenidos disruptivos. Aquí demostramos cómo la Inteligencia Artificial aplicada de forma irreverente genera millones de impactos orgánicos. 
+                    <strong class="text-brand-pepilla block mt-2 font-montserrat tracking-wide uppercase text-xs">¡Estamos abiertos a colaboraciones en nuestras redes sociales para potenciar tu marca!</strong>
+                </p>
+
+                <!-- BOTONERA DE REDES SOCIALES (Hover premium + Arroba de Threads) -->
+                <div class="flex flex-col items-center mt-8">
+                    <div class="flex flex-wrap justify-center items-center gap-6">
+                        <!-- Facebook -->
+                        <a href="TU_LINK_DE_FACEBOOK" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-blue-500 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="TU_LINK_DE_INSTAGRAM" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-pink-500 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.4)]" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        
+                        <!-- TikTok -->
+                        <a href="TU_LINK_DE_TIKTOK" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        
+                        <!-- YouTube -->
+                        <a href="TU_LINK_DE_YOUTUBE" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-red-500 hover:border-red-500 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+
+                    <!-- Cuenta de Threads -->
+                    
+                </div>
+            </div>
+
+            <!-- Gran Consola Central CRT Estilo Monitor Antiguo -->
+            <div class="max-w-4xl mx-auto bg-neutral-900 p-4 md:p-8 rounded-3xl border-4 border-neutral-950 shadow-2xl">
+                <div class="crt-screen bg-neutral-950 border border-brand-pepilla rounded-2xl p-6 min-h-[300px]">
+                    <div class="flex justify-between font-mono text-[11px] text-brand-pepilla mb-4 border-b border-brand-pepilla border-opacity-20 pb-2">
+                        <span>SYS_STATUS: ACTIVE</span>
+                        <span class="animate-pulse">● HUMOR_METER: MAX_VIRAL</span>
+                    </div>
+
+                    <!-- Grid de Videos Organizados con Reproducción Nativa Directa -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <!-- Video Item 1 -->
+                        <!-- REEMPLAZA 'TU_LINK_DE_RED_SOCIAL_1' POR EL ENLACE REAL DE TU PUBLICACIÓN -->
+                        <a href="TU_LINK_DE_RED_SOCIAL_1" target="_blank" class="bg-black bg-opacity-60 border border-brand-pepilla border-opacity-30 p-4 rounded-xl hover:border-opacity-100 hover:shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all group block cursor-pointer">
+                            <div class="aspect-video bg-neutral-900 rounded mb-3 flex items-center justify-center group-hover:scale-105 transition-transform relative overflow-hidden border border-neutral-800">
+                                <!-- CAMBIO: Video MP4 directo en bucle silencioso -->
+                                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity">
+                                    <source src="videos/humor-viral-1.mp4" type="video/mp4">
+                                </video>
+                                <i class="fas fa-play text-xl relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-brand-pepilla"></i>
+                            </div>
+                            <span class="font-mono text-[10px] text-gray-500 block">PROJECT_01 // VIRAL REEL</span>
+                            <h4 class="text-sm font-bold text-white font-montserrat mt-1">Parodia Animal IA</h4>
+                        </a>
+
+                        <!-- Video Item 2 -->
+                        <!-- REEMPLAZA 'TU_LINK_DE_RED_SOCIAL_2' -->
+                        <a href="TU_LINK_DE_RED_SOCIAL_2" target="_blank" class="bg-black bg-opacity-60 border border-brand-pepilla border-opacity-30 p-4 rounded-xl hover:border-opacity-100 hover:shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all group block cursor-pointer">
+                            <div class="aspect-video bg-neutral-900 rounded mb-3 flex items-center justify-center group-hover:scale-105 transition-transform relative overflow-hidden border border-neutral-800">
+                                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity">
+                                    <source src="videos/humor-viral-2.mp4" type="video/mp4">
+                                </video>
+                                <i class="fas fa-play text-xl relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-brand-pepilla"></i>
+                            </div>
+                            <span class="font-mono text-[10px] text-gray-500 block">PROJECT_02 // SURREAL SHORT</span>
+                            <h4 class="text-sm font-bold text-white font-montserrat mt-1">Spooder-man Satírico</h4>
+                        </a>
+
+                        <!-- Video Item 3 -->
+                        <!-- REEMPLAZA 'TU_LINK_DE_RED_SOCIAL_3' -->
+                        <a href="TU_LINK_DE_RED_SOCIAL_3" target="_blank" class="bg-black bg-opacity-60 border border-brand-pepilla border-opacity-30 p-4 rounded-xl hover:border-opacity-100 hover:shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all group block cursor-pointer">
+                            <div class="aspect-video bg-neutral-900 rounded mb-3 flex items-center justify-center group-hover:scale-105 transition-transform relative overflow-hidden border border-neutral-800">
+                                <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-opacity">
+                                    <source src="videos/humor-viral-3.mp4" type="video/mp4">
+                                </video>
+                                <i class="fas fa-play text-xl relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-brand-pepilla"></i>
+                            </div>
+                            <span class="font-mono text-[10px] text-gray-500 block">PROJECT_03 // TECH PARODY</span>
+                            <h4 class="text-sm font-bold text-white font-montserrat mt-1">Físicas Absurdas IA</h4>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- SECCIÓN NOSOTROS (VIDEO) -->
-    <section id="video" class="video-section">
-        <!-- NOTA: Animación título 'Nosotros' -->
-        <h2 class="reveal from-left">NOSOTROS</h2>
+<!-- SEPARADOR PARALLAX 3 -->
+    <div class="separador-parallax bg-separador-3">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <span class="text-xs font-mono tracking-[0.3em] text-brand-hardware uppercase font-bold">// DIGITAL MATRIX // GUATEMALA REGION</span>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 4: CONTACTO OPTIMIZADO (Sin mapa, con Formulario y WhatsApp Directo) -->
+    <section id="contacto" class="flex flex-col md:flex-row bg-brand-black text-white border-t border-gray-900">
         
-        <div class="video-content-text">
-            <!-- NOTA: Animación párrafos -->
-            <p class="reveal from-left">Nos especializamos en diseño de contenido publicitario para marcas, creando posts y anuncios visuales de alto impacto pensados para redes sociales y campañas digitales.</p>
+        <!-- Bloque Izquierdo: Formulario de Contacto Tradicional -->
+        <div class="w-full md:w-1/2 p-12 md:p-24">
+            <span class="text-brand-pepilla font-mono text-xs tracking-widest block mb-2">// COTIZACIÓN EXPRESA</span>
+            <h2 class="text-3xl font-black uppercase mb-8 font-montserrat tracking-tight">CONTACT US</h2>
             
-            <p class="reveal from-left delay-200">Diseñamos piezas gráficas y videos que captan atención, comunican el mensaje correcto y motivan a la acción, utilizando inteligencia artificial integrada con criterio creativo humano para lograr resultados más rápidos, consistentes y efectivos.</p>
-            
-            <p class="reveal from-left delay-400">Como valor agregado, ofrecemos el desarrollo de páginas web de una sola página, diseñadas para complementar la publicidad digital, reforzar la credibilidad de la marca y convertir el tráfico de anuncios en clientes reales.</p>
-            
-            <p class="highlight reveal from-right">Nuestro enfoque no es solo estético: creamos publicidad visual estratégica, optimizada para redes sociales, anuncios pagados y crecimiento de marca.</p>
-            
-            <p class="reveal from-left delay-600">Trabajamos con negocios que entienden que una buena imagen vende, y que el diseño correcto puede marcar la diferencia entre pasar desapercibido o destacar.</p>
-        </div>
-        
-        <!-- NOTA: Animación contenedor de video -->
-        <div class="video-container reveal from-bottom">
-            <iframe src="https://www.youtube.com/embed/cohXMhfMr5c?si=ImmersiveView" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <!-- SECCIÓN PAQUETES -->
-    <section id="paquetes" class="packages-section" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/dboogkirg/image/upload/v1769615061/bg2_tnoy8y.png'); background-attachment: fixed; background-size: cover; background-position: center;">
-        <h2 class="reveal from-top">DISEÑOS PARA REDES SOCIALES</h2>
-        <div class="packages-grid">
-            
-            <!-- NOTA: Animación tarjetas de precios -->
-            <div class="package-card reveal from-bottom">
-                <h3>Startup</h3>
-                <div class="price">Q1,000</div>
-                <p>Ideal para nuevos emprendimientos que necesitan identidad visual rápida.</p>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Diseño de Logo</li>
-                    <li><i class="fas fa-check"></i> Linea Gráfica</li>
-                    <li><i class="fas fa-check"></i> 5 Posts para Redes Sociales</li>
-                    <li><i class="fas fa-check"></i> 2 Anuncios Animados (Reels)</li>
-                </ul>
-                <a href="#contacto" class="btn">Elegir</a>
-            </div>
-
-            <div class="package-card reveal from-bottom delay-200" style="border-color: var(--accent-color); transform: scale(1.05);">
-                <h3 style="color: var(--accent-color);">Professional</h3>
-                <div class="price">Q2,500</div>
-                <p>Solución completa para PYMES buscando crecimiento digital.</p>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Social Strategy </li>
-                    <li><i class="fas fa-check"></i> Diseño con IA aplicada a creatividad y animación</li>
-                    <li><i class="fas fa-check"></i> 10 Posts Estáticos</li>
-                    <li><i class="fas fa-check"></i> 5 Auncios Animados (Reels)</li>
-                </ul>
-                <a href="#contacto" class="btn" style="background: var(--accent-color); color: #000;">Elegir</a>
-            </div>
-
-            <div class="package-card reveal from-bottom delay-400">
-                <h3>PRO</h3>
-                <div class="price">Q4,000+</div>
-                <p>Dominio total del mercado con herramientas avanzadas.</p>
-                <ul class="features">
-                    <li><i class="fas fa-check"></i> Página de Internet (Landing Page)</li>
-                    <li><i class="fas fa-check"></i> Dominio y Hosting</li>
-                    <li><i class="fas fa-check"></i> Social Strategy</li>
-					<li><i class="fas fa-check"></i> 10 Posts Estáticos</li>
-                    <li><i class="fas fa-check"></i> 5 Auncios Animados (Reels)</li>
-                </ul>
-                <a href="#contacto" class="btn">Cotizar</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN SERVICIOS (PORTAFOLIO) -->
-    <section id="portafolio" class="portfolio-section">
-        <h2 class="reveal from-top">SERVICIOS</h2>
-		<p class="reveal from-bottom" style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.0rem;">
-            Puedes contratar cualquier servicio de forma individual: desde un diseño de post o reel animado, hasta piezas publicitarias o contenido específico. Elige solo lo que necesitas, cuando lo necesitas.
-        </p>
-		
-        <div class="portfolio-grid">
-            <!-- NOTA: Animación items portafolio. Puedes jugar con 'from-left' y 'from-right' -->
-            <div class="portfolio-item reveal from-left">
-                <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769702921/ia_desing_nvoiw8.png">
-                <div class="portfolio-overlay">
-                    <h3>Diseño + IA</h3>
-                    <p>Efectos Especiales</p>
+            <form action="#" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <input type="text" name="name" placeholder="Name *" class="w-full bg-transparent border-b border-gray-600 py-3 focus:border-white focus:outline-none transition-colors font-roboto text-sm" required>
+                    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Email *" class="w-full bg-transparent border-b border-gray-600 py-3 focus:border-white focus:outline-none transition-colors font-roboto text-sm" required>
+                    </div>
                 </div>
-            </div>
-            <div class="portfolio-item reveal from-bottom delay-200">
-                <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769704529/social_media_n2c68y.png" alt="Diseño Web">
-                <div class="portfolio-overlay">
-                    <h3>SOCIAL MEDIA</h3>
-                    <p>Publicaciones Y Reels</p>
+                <div>
+                    <input type="text" name="subject" placeholder="Subject" class="w-full bg-transparent border-b border-gray-600 py-3 focus:border-white focus:outline-none transition-colors font-roboto text-sm">
                 </div>
-            </div>
-            <div class="portfolio-item reveal from-right delay-400">
-                <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769704921/logos_koqydg.png" alt="Campaña Social">
-                <div class="portfolio-overlay">
-                    <h3>DISEÑO DE LOGO</h3>
-                    <p>Imagen de Marca</p>
+                <div>
+                    <textarea name="message" rows="4" placeholder="Message Details" class="w-full bg-transparent border-b border-gray-600 py-3 focus:border-white focus:outline-none transition-colors font-roboto text-sm" required></textarea>
                 </div>
-            </div>
-            <div class="portfolio-item reveal from-left">
-                <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769705297/paginaweb_js4vcj.png" alt="App UI">
-                <div class="portfolio-overlay">
-                    <h3>PAGINAS WEB</h3>
-                    <p>Landing pages</p>
-                </div>
-            </div>
-            <div class="portfolio-item reveal from-bottom delay-200">
-                <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769706248/publicidad_tkk9fe.png" alt="Streaming">
-                <div class="portfolio-overlay">
-                    <h3>PUBLICIDAD</h3>
-                    <p>Diseño Publicitario</p>
-                </div>
-            </div>
-            <div class="portfolio-item reveal from-right delay-400">
-                <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769706675/video_pfjrhn.png" alt="Hardware">
-                <div class="portfolio-overlay">
-                    <h3>ANIMACIÓN DE VIDEO</h3>
-                    <p>Video Publicitario</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN CONTACTO -->
-    <section id="contacto" class="contact-section">
-        <h2 class="reveal from-top">Inicia tu Proyecto</h2>
-        <div class="contact-container reveal from-bottom">
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Gracias por tu mensaje. Te contactaremos pronto.');">
-                <div class="form-group">
-                    <input type="text" name="nombre" class="form-control" placeholder="Tu Nombre Completo" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" class="form-control" placeholder="Tu Correo Electrónico" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="telefono" class="form-control" placeholder="Tu Teléfono">
-                </div>
-                <div class="form-group">
-                    <textarea name="mensaje" class="form-control" placeholder="Cuéntanos sobre tu proyecto o idea..." required></textarea>
-                </div>
-                <div style="text-align: center;">
-                    <button type="submit" class="btn">Enviar Mensaje</button>
-                </div>
+                <button type="submit" class="border-2 border-white text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors mt-4 font-montserrat">
+                    Send Message
+                </button>
             </form>
         </div>
+
+        <!-- Bloque Derecho: Canal de WhatsApp y Datos de Guatemala -->
+        <div class="w-full md:w-1/2 p-12 md:p-24 bg-brand-dark-gray flex flex-col justify-center border-l border-neutral-900">
+            <span class="text-brand-hardware font-mono text-xs tracking-widest block mb-2">// RESPUESTA INMEDIATA</span>
+            <h2 class="text-3xl font-black uppercase mb-6 font-montserrat tracking-tight">HABLEMOS DE UNA VEZ</h2>
+            <p class="text-gray-400 mb-8 font-roboto text-sm md:text-base leading-relaxed">
+                ¿Prefieres una comunicación más rápida para arrancar tu proyecto? Escríbenos directamente a nuestra línea oficial de atención en Guatemala para coordinar una llamada o sesión técnica.
+            </p>
+            
+            <!-- Tarjeta de WhatsApp -->
+            <div class="space-y-6">
+                <a href="https://wa.me/50254903915" target="_blank" class="flex items-center p-4 bg-emerald-950 bg-opacity-40 border border-emerald-500 rounded-2xl group hover:bg-emerald-500 hover:text-black transition-all duration-300 max-w-sm">
+                    <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mr-4 text-black group-hover:bg-black group-hover:text-emerald-500 transition-colors">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] font-mono tracking-wider text-emerald-400 group-hover:text-black uppercase font-bold">WhatsApp Directo</span>
+                        <span class="block font-bold text-base font-montserrat tracking-tight text-white group-hover:text-black">(502) 54903915</span>
+                    </div>
+                </a>
+
+                <!-- Ubicación -->
+                <div class="flex items-center p-4 bg-neutral-900 border border-neutral-800 rounded-2xl max-w-sm">
+                    <div class="w-12 h-12 bg-neutral-800 rounded-xl flex items-center justify-center mr-4 text-brand-pepilla">
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] font-mono tracking-wider text-gray-500 uppercase">Ubicación</span>
+                        <span class="block font-bold text-sm font-montserrat text-white tracking-wide">GUATEMALA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <img src="https://res.cloudinary.com/dboogkirg/image/upload/v1769651681/LOGO_WEB_i4dy4k.png" alt="Pepitoria Estudio" class="logo-img">
-        <p>&copy; 2026 Pepitoria Estudio. Todos los derechos reservados.</p>
-        <div style="margin-top: 20px;">
-            <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-youtube"></i></a>
-            <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-tiktok"></i></a>
-            <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="margin: 0 10px; color: #fff;"><i class="fab fa-facebook"></i></a>
+
+
+<!-- FOOTER PREMIUM ADAPTADO A PEPITORIA ESTUDIO -->
+    <footer class="bg-brand-white text-brand-black py-16 text-sm font-roboto border-t border-gray-250">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Identidad de la Agencia -->
+                <div class="col-span-1 md:col-span-1">
+                    <a href="#" class="logo-3d text-xl tracking-tighter uppercase inline-block text-brand-black mb-4" style="text-shadow: 1px 1px 0px #eee, 2px 2px 0px #eee, 3px 3px 0px #eee, 4px 4px 0px #111, 5px 5px 0px #111;">
+                        PEPITORIA<br><span class="text-brand-pepilla">ESTUDIO</span>
+                    </a>
+                    <p class="text-gray-500 text-xs mt-2 font-mono">// DIRECCIÓN DE ARTE RADICAL & IA</p>
+                </div>
+
+                <!-- Redes Sociales Activas -->
+                <div>
+                    <h5 class="font-bold uppercase mb-4 font-montserrat text-xs tracking-wider">Redes Sociales</h5>
+                    <ul class="space-y-2 text-gray-500 text-xs font-mono">
+                        <li><a href="TU_LINK_DE_FACEBOOK" target="_blank" class="hover:text-brand-black transition-colors">● Facebook</a></li>
+                        <li><a href="TU_LINK_DE_INSTAGRAM" target="_blank" class="hover:text-brand-black transition-colors">● Instagram</a></li>
+                        <li><a href="TU_LINK_DE_TIKTOK" target="_blank" class="hover:text-brand-black transition-colors">● TikTok</a></li>
+                        <li><a href="TU_LINK_DE_THREADS" target="_blank" class="hover:text-brand-black transition-colors">● Threads</a></li>
+                        <li><a href="TU_LINK_DE_YOUTUBE" target="_blank" class="hover:text-brand-black transition-colors">● YouTube</a></li>
+                    </ul>
+                </div>
+
+                <!-- Navegación de Servicios -->
+                <div>
+                    <h5 class="font-bold uppercase mb-4 font-montserrat text-xs tracking-wider">Servicios</h5>
+                    <ul class="space-y-2 text-gray-500 text-xs font-mono">
+                        <li><a href="#anuncios" class="hover:text-brand-black transition-colors">⚡ Anuncios Publicitarios</a></li>
+                        <li><a href="#anuncios" class="hover:text-brand-black transition-colors">🎨 Diseño Gráfico</a></li>
+                        <li><a href="#landings" class="hover:text-brand-black transition-colors">🚀 Landing Pages</a></li>
+                        <li><a href="#humor-ia" class="hover:text-brand-black transition-colors">🤖 Laboratorio IA & Humor</a></li>
+                    </ul>
+                </div>
+
+                <!-- Información de Contacto Real -->
+                <div>
+                    <h5 class="font-bold uppercase mb-4 font-montserrat text-xs tracking-wider">Contacto Oficial</h5>
+                    <ul class="space-y-3 text-gray-500 text-xs">
+                        <li class="flex items-start font-mono"><i class="fas fa-map-marker-alt mt-0.5 mr-3 w-4 text-brand-hardware"></i> GUATEMALA</li>
+                        <li class="flex items-start font-mono"><i class="fab fa-whatsapp mt-0.5 mr-3 w-4 text-brand-hardware"></i> (502) 54903915</li>
+                        <li class="flex items-start font-mono"><i class="fas fa-envelope mt-0.5 mr-3 w-4 text-brand-hardware"></i> hola@pepitoriaestudio.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Derechos de Autor -->
+            <div class="border-t border-gray-200 pt-8 text-center text-gray-400 text-xs font-mono">
+                &copy; 2026 Pepitoria Estudio. Todos los derechos reservados. Diseñado para alta velocidad de conversión.
+            </div>
         </div>
     </footer>
 
-    <!-- SCRIPT (INTERACTIVIDAD Y ANIMACIONES) -->
+
+    <!-- SCRIPTS DE INTERACTIVIDAD NATIVOS ACTUALIZADOS (Botonera, Perilla, Compilador) -->
     <script>
-        // Menú hamburguesa
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+        // BASE DE DATOS DE CONTENIDO COMERCIAL
+        const portfolioData = {
+            anuncios: [
+                { sector: 'GASTRONÓMICO', formato: 'Video Comercial', titulo: 'Spot de Comida Rápida (Hamburguesería)', src: 'video/hamburgesa.mp4' },
+                { sector: 'RETAIL / VENTAS', formato: 'Reel de Conversión', titulo: 'Campaña de Ofertas de Temporada', src: 'https://via.placeholder.com/800x450/111111/f2994a?text=[REEL+VENTAS+PRODUCTO]' },
+                { sector: 'SERVICIOS', formato: 'Anuncio Publicitario', titulo: 'Presentación de Servicios Médicos/Estéticos', src: 'https://via.placeholder.com/800x450/111111/ffffff?text=[VIDEO+SERVICIOS]' }
+            ],
+            branding: [
+                { sector: 'IDENTIDAD', formato: 'Manual de Marca', titulo: 'Logotipo Corporativo & Papelería', src: 'https://via.placeholder.com/800x450/111111/39ff14?text=[DISEÑO+DE+LOGO]' },
+                { sector: 'PROMO / IMPRESOS', formato: 'Flyer Digital & Volante', titulo: 'Diseño publicitario para Lanzamientos', src: 'https://via.placeholder.com/800x450/111111/f2994a?text=[FLYER+PROMOCIONAL]' },
+                { sector: 'EXTERIORES', formato: 'Valla / Mupie / Banner', titulo: 'Artes de Vías Públicas y Formatos Grandes', src: 'https://via.placeholder.com/800x450/111111/ffffff?text=[VALLAS+Y+MUPIES]' }
+            ]
+        };
+
+        const mediaDisplay = document.getElementById('mediaDisplay'); 
+        const mediaTitle = document.getElementById('mediaTitle');
+        const mediaClient = document.getElementById('mediaClient');
+        const mediaType = document.getElementById('mediaType');
+
+        function selectProject(category, index, buttonElement) {
+            document.querySelectorAll('.indicator').forEach(ind => {
+                ind.className = 'w-2 h-2 rounded-full bg-neutral-600 indicator';
+            });
+            document.querySelectorAll('.portfolio-btn').forEach(btn => {
+                btn.classList.remove('border-brand-pepilla', 'border-brand-hardware');
+            });
+
+            const indicator = buttonElement.querySelector('.indicator');
+            if (category === 'anuncios') {
+                indicator.className = 'w-2 h-2 rounded-full bg-brand-hardware shadow-[0_0_8px_#f2994a] indicator';
+                buttonElement.classList.add('border-brand-hardware');
+            } else {
+                indicator.className = 'w-2 h-2 rounded-full bg-brand-pepilla shadow-[0_0_8px_#39ff14] indicator';
+                buttonElement.classList.add('border-brand-pepilla');
+            }
+
+            const data = portfolioData[category][index];
+            mediaDisplay.style.opacity = 0;
+            
+            setTimeout(() => {
+                mediaDisplay.src = data.src; 
+                mediaTitle.innerText = data.titulo;
+                mediaType.innerText = "SECTOR: " + data.sector;
+                mediaClient.innerText = "FORMATO: " + data.formato;
+                mediaDisplay.style.opacity = 1;
+            }, 150);
         }
 
-        // Cambio de estilo de navegación al scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 10, 10, 1)';
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.5)';
-            } else {
-                nav.style.background = 'rgba(10, 10, 10, 0.9)';
-                nav.style.boxShadow = 'none';
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstBtn = document.querySelector('.portfolio-btn');
+            if (firstBtn) selectProject('anuncios', 0, firstBtn);
+        });
+
+        // LOADER DE PÁGINA INICIAL
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.classList.add('opacity-0');
+                setTimeout(() => { loader.style.display = 'none'; }, 500);
             }
         });
 
-        // ANIMACIONES AL SCROLL (INTERSECTION OBSERVER)
-        // Este script detecta cuando los elementos con la clase "reveal" entran en pantalla
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1 // Se activa cuando el 10% del elemento es visible
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active'); // Agrega la clase que hace visible al elemento
-                    observer.unobserve(entry.target); // Deja de observar una vez animado (para que no se repita)
-                }
-            });
-        }, observerOptions);
-
-        // Selecciona todos los elementos con la clase .reveal y empieza a observarlos
-        document.querySelectorAll('.reveal').forEach((el) => {
-            observer.observe(el);
+        // EFECTO NAVBAR SCROLL
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black', 'shadow-md');
+                navbar.classList.remove('py-6');
+                navbar.classList.add('py-4');
+            } else {
+                navbar.classList.remove('bg-black', 'shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-6');
+            }
         });
     </script>
 </body>
