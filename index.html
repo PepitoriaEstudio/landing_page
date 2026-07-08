@@ -633,62 +633,65 @@
         const mediaClient = document.getElementById('mediaClient');
         const mediaType = document.getElementById('mediaType');
 
-        function selectProject(category, index, buttonElement) {
-            document.querySelectorAll('.indicator').forEach(ind => {
-                ind.className = 'w-2 h-2 rounded-full bg-neutral-600 indicator';
-            });
-            document.querySelectorAll('.portfolio-btn').forEach(btn => {
-                btn.classList.remove('border-brand-pepilla', 'border-brand-hardware');
-            });
+       function selectProject(category, index, buttonElement) {
+    document.querySelectorAll('.indicator').forEach(ind => {
+        ind.className = 'w-2 h-2 rounded-full bg-neutral-600 indicator';
+    });
+    document.querySelectorAll('.portfolio-btn').forEach(btn => {
+        btn.classList.remove('border-brand-pepilla', 'border-brand-hardware');
+    });
 
-            const indicator = buttonElement.querySelector('.indicator');
-            if (category === 'anuncios') {
-                indicator.className = 'w-2 h-2 rounded-full bg-brand-hardware shadow-[0_0_8px_#f2994a] indicator';
-                buttonElement.classList.add('border-brand-hardware');
-            } else {
-                indicator.className = 'w-2 h-2 rounded-full bg-brand-pepilla shadow-[0_0_8px_#39ff14] indicator';
-                buttonElement.classList.add('border-brand-pepilla');
+    const indicator = buttonElement.querySelector('.indicator');
+    if (category === 'anuncios') {
+        indicator.className = 'w-2 h-2 rounded-full bg-brand-hardware shadow-[0_0_8px_#f2994a] indicator';
+        buttonElement.classList.add('border-brand-hardware');
+    } else {
+        indicator.className = 'w-2 h-2 rounded-full bg-brand-pepilla shadow-[0_0_8px_#39ff14] indicator';
+        buttonElement.classList.add('border-brand-pepilla');
+    }
+
+    const data = portfolioData[category][index];
+    
+    // CAMBIO CLAVE: Obtenemos el elemento que está vivo en el DOM en este instante
+    let currentMedia = document.getElementById('mediaDisplay');
+    currentMedia.style.opacity = 0;
+    
+    setTimeout(() => {
+        // Validación para soportar tanto imágenes de branding como videos de anuncios
+        if (data.src.endsWith('.mp4') || data.src.includes('mixkit.co')) {
+            // Si no es un elemento de video, creamos uno nuevo nativo
+            if (currentMedia.tagName !== 'VIDEO') {
+                const newVideo = document.createElement('video');
+                newVideo.id = 'mediaDisplay';
+                newVideo.autoplay = true;
+                newVideo.loop = true;
+                newVideo.muted = true;
+                newVideo.playsInline = true;
+                newVideo.className = 'w-full h-full object-cover transition-opacity duration-150';
+                currentMedia.parentNode.replaceChild(newVideo, currentMedia);
+                currentMedia = newVideo; // Actualizamos la referencia local
             }
-
-            const data = portfolioData[category][index];
-            mediaDisplay.style.opacity = 0;
-            
-            setTimeout(() => {
-                // Validación para soportar tanto imágenes de branding como videos de anuncios
-                if (data.src.endsWith('.mp4') || data.src.includes('mixkit.co')) {
-                    // Si es un video, creamos o restauramos la etiqueta de video nativa
-                    if (mediaDisplay.tagName !== 'VIDEO') {
-                        const newVideo = document.createElement('video');
-                        newVideo.id = 'mediaDisplay';
-                        newVideo.autoplay = true;
-                        newVideo.loop = true;
-                        newVideo.muted = true;
-                        newVideo.playsInline = true;
-                        newVideo.className = 'w-full h-full object-cover transition-opacity duration-150';
-                        mediaDisplay.parentNode.replaceChild(newVideo, mediaDisplay);
-                        window.mediaDisplay = newVideo;
-                    }
-                    window.mediaDisplay.src = data.src;
-                    window.mediaDisplay.load();
-                    window.mediaDisplay.play().catch(e => console.log("Autoplay bloqueado temporalmente por política de navegador"));
-                } else {
-                    // Si es una imagen (Branding), reemplazamos temporalmente por una etiqueta <img> para que renderice correctamente
-                    if (mediaDisplay.tagName !== 'IMG') {
-                        const newImg = document.createElement('img');
-                        newImg.id = 'mediaDisplay';
-                        newImg.className = 'w-full h-full object-cover transition-opacity duration-150';
-                        mediaDisplay.parentNode.replaceChild(newImg, mediaDisplay);
-                        window.mediaDisplay = newImg;
-                    }
-                    window.mediaDisplay.src = data.src;
-                }
-
-                mediaTitle.innerText = data.titulo;
-                mediaType.innerText = "SECTOR: " + data.sector;
-                mediaClient.innerText = "FORMATO: " + data.formato;
-                window.mediaDisplay.style.opacity = 1;
-            }, 150);
+            currentMedia.src = data.src;
+            currentMedia.load();
+            currentMedia.play().catch(e => console.log("Autoplay bloqueado"));
+        } else {
+            // Si es una imagen y la pantalla actual es un video, la reemplazamos por una etiqueta <img>
+            if (currentMedia.tagName !== 'IMG') {
+                const newImg = document.createElement('img');
+                newImg.id = 'mediaDisplay';
+                newImg.className = 'w-full h-full object-cover transition-opacity duration-150';
+                currentMedia.parentNode.replaceChild(newImg, currentMedia);
+                currentMedia = newImg; // Actualizamos la referencia local
+            }
+            currentMedia.src = data.src;
         }
+
+        mediaTitle.innerText = data.titulo;
+        mediaType.innerText = "SECTOR: " + data.sector;
+        mediaClient.innerText = "FORMATO: " + data.formato;
+        currentMedia.style.opacity = 1;
+    }, 150);
+}
 
         window.addEventListener('DOMContentLoaded', () => {
             const firstBtn = document.querySelector('.portfolio-btn');
