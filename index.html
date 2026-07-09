@@ -105,6 +105,9 @@
         .bg-separador-3 {
             background-image: url('images/tikal.jpeg');
         }
+        .bg-separador-4 {
+            background-image: url('images/contacto.jpeg');
+        }
 
         /* Transición suave para el menú móvil */
         #mobile-menu {
@@ -114,45 +117,39 @@
 </head>
 <body class="text-gray-300">
 
-    <!-- NAVBAR COMPACTO CON LOGO LINEAL Y ANIMACIÓN NEÓN (HOVER) -->
+    <!-- NAVBAR COMPACTO -->
     <nav id="navbar" class="fixed w-full z-40 top-0 py-4 text-white bg-brand-black bg-opacity-95 backdrop-blur-md border-b border-neutral-900 transition-all duration-300">
         <div class="container mx-auto px-6 flex justify-between items-center relative">
             
-            <!-- LOGO EN FORMATO LINEAL (COMPACTO Y HORIZONTAL) -->
             <a href="#" class="font-montserrat font-black text-sm tracking-[0.2em] uppercase transition-colors duration-300 hover:text-brand-pepilla flex items-center space-x-2">
                 <span>PEPITORIA</span>
                 <span class="text-brand-pepilla font-normal bg-neutral-900 border border-neutral-800 px-1.5 py-0.5 rounded text-[10px] tracking-widest">ESTUDIO</span>
             </a>
 
-            <!-- MENÚ PRINCIPAL ESCRITORIO (OCULTO EN MÓVILES) -->
             <div class="hidden md:flex space-x-2 text-[11px] font-bold tracking-widest uppercase font-montserrat">
-                
                 <a href="#anuncios" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-hardware hover:text-brand-hardware hover:shadow-[0_0_10px_rgba(242,153,74,0.3)]">
                     1. Anuncios & Diseño
                 </a>
-                
                 <a href="#landings" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-white hover:text-white hover:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
                     2. Páginas Web
                 </a>
-                
+                <a href="#tienda" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-pepilla hover:text-brand-pepilla hover:shadow-[0_0_10px_rgba(57,255,20,0.3)]">
+                    3. Tienda
+                </a>
                 <a href="#humor-ia" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-pepilla hover:text-brand-pepilla hover:shadow-[0_0_10px_rgba(57,255,20,0.3)]">
-                    3. Laboratorio IA
+                    4. Laboratorio IA
                 </a>
-                
                 <a href="#contacto" class="relative px-4 py-2 border border-transparent rounded transition-all duration-300 hover:border-brand-pepilla hover:text-brand-pepilla hover:shadow-[0_0_10px_rgba(57,255,20,0.3)]">
-                    4. Cotizar
+                    5. Cotizar
                 </a>
-
             </div>
 
-            <!-- BOTÓN HAMBURGUESA PARA DISPOSITIVOS MÓVILES -->
             <div class="flex items-center md:hidden">
                 <button id="mobile-menu-btn" class="text-white hover:text-brand-pepilla focus:outline-none p-2 transition-colors duration-200" aria-label="Abrir menú de navegación">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
 
-            <!-- MENÚ DESPLEGABLE PARA DISPOSITIVOS MÓVILES -->
             <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-brand-black bg-opacity-98 border-b border-neutral-900 z-30 transform -translate-y-4 opacity-0 transition-all duration-300">
                 <div class="px-6 py-8 flex flex-col space-y-4 text-xs font-bold tracking-widest uppercase font-montserrat">
                     <a href="#anuncios" class="mobile-link py-3.5 border-b border-neutral-900 hover:text-brand-hardware transition-colors flex items-center justify-between">
@@ -163,12 +160,16 @@
                         <span>2. Páginas Web</span>
                         <i class="fas fa-chevron-right text-[10px] text-gray-500"></i>
                     </a>
+                    <a href="#tienda" class="mobile-link py-3.5 border-b border-neutral-900 hover:text-brand-pepilla transition-colors flex items-center justify-between">
+                        <span>3. Tienda</span>
+                        <i class="fas fa-chevron-right text-[10px] text-brand-pepilla"></i>
+                    </a>
                     <a href="#humor-ia" class="mobile-link py-3.5 border-b border-neutral-900 hover:text-brand-pepilla transition-colors flex items-center justify-between">
-                        <span>3. Laboratorio IA</span>
+                        <span>4. Laboratorio IA</span>
                         <i class="fas fa-chevron-right text-[10px] text-brand-pepilla"></i>
                     </a>
                     <a href="#contacto" class="mobile-link py-3.5 border-b border-neutral-900 hover:text-brand-pepilla transition-colors flex items-center justify-between">
-                        <span>4. Cotizar</span>
+                        <span>5. Cotizar</span>
                         <i class="fas fa-chevron-right text-[10px] text-brand-pepilla"></i>
                     </a>
                 </div>
@@ -177,11 +178,10 @@
         </div>
     </nav>
 
-    <!-- SECCIÓN 1: REPRODUCTOR DE PORTAFOLIO CON BOTONERA ANALÓGICA -->
+    <!-- SECCIÓN 1: REPRODUCTOR DE PORTAFOLIO -->
     <section id="anuncios" class="min-h-screen pt-32 pb-20 flex items-center bg-brand-black border-b border-gray-900">
         <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <!-- Texto Izquierda (Venta de Servicios) -->
             <div class="lg:col-span-5">
                 <span class="text-brand-pepilla font-mono text-sm tracking-widest block mb-2">// PROPUESTA COMERCIAL</span>
                 <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-6">
@@ -198,7 +198,6 @@
                 </div>
             </div>
 
-            <!-- COMPONENTE INTERACTIVO DE HARDWARE (Botonera Separada) -->
             <div class="lg:col-span-7 flex justify-center">
                 <div class="w-full max-w-xl bg-brand-hardware p-6 rounded-3xl shadow-2xl border-4 border-black text-black relative">
                     <div class="flex justify-between items-center mb-4 border-b-2 border-black pb-2">
@@ -209,14 +208,11 @@
                         </div>
                     </div>
 
-                    <!-- El Reproductor de Pantalla (OPTIMIZADO PARA VIDEO REAL) -->
                     <div class="bg-black rounded-xl p-2 flex flex-col relative mb-6 border border-neutral-800">
                         <div class="aspect-video bg-neutral-950 rounded overflow-hidden relative flex items-center justify-center border border-neutral-900">
-                            <!-- Cambio clave: Etiqueta <video> nativa en lugar de <img> -->
                             <video id="mediaDisplay" autoplay loop muted playsinline class="w-full h-full object-cover transition-opacity duration-150 opacity-1"></video>
                         </div>
                         
-                        <!-- Telemetría Dinámica de la Pantalla -->
                         <div class="mt-2 flex justify-between items-end font-mono text-[10px] text-brand-pepilla p-1.5 bg-neutral-900 rounded border border-neutral-800">
                             <div>
                                 <span id="mediaType" class="block text-gray-400">SECTOR: -</span>
@@ -228,10 +224,7 @@
                         </div>
                     </div>
 
-                    <!-- BOTONERA ANALÓGICA CLASIFICADA -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        
-                        <!-- Columna 1: Anuncios Publicitarios -->
                         <div class="bg-neutral-900 bg-opacity-95 p-4 rounded-xl border-2 border-black shadow-inner">
                             <span class="text-[10px] font-mono font-black text-brand-hardware block mb-3 border-b border-neutral-800 pb-1 uppercase tracking-wider">● 1. Anuncios Publicitarios</span>
                             <div class="flex flex-col space-y-2">
@@ -250,7 +243,6 @@
                             </div>
                         </div>
 
-                        <!-- Columna 2: Branding y Diseños -->
                         <div class="bg-neutral-900 bg-opacity-95 p-4 rounded-xl border-2 border-black shadow-inner">
                             <span class="text-[10px] font-mono font-black text-brand-pepilla block mb-3 border-b border-neutral-800 pb-1 uppercase tracking-wider">● 2. Branding & Corporativo</span>
                             <div class="flex flex-col space-y-2">
@@ -268,7 +260,6 @@
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -283,12 +274,9 @@
         </div>
     </div>
 
-    <!-- SECCIÓN 2: PÁGINAS WEB Y LANDING PAGES (Estructura de Cuadrícula Cruzada de NIGO) -->
+    <!-- SECCIÓN 2: PÁGINAS WEB -->
     <section id="landings" class="bg-brand-black text-white">
-        
-        <!-- PARTE 1: INFORMACIÓN DE LANDING PAGES (Texto Izq, Imagen Der con Fondo Oscuro) -->
         <div class="flex flex-col md:flex-row">
-            <!-- Bloque de Texto (Izquierda) -->
             <div class="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center bg-brand-black">
                 <h3 class="font-montserrat font-bold text-sm text-brand-pepilla mb-2 uppercase tracking-widest">// INGENIERÍA FRONTEND</h3>
                 <h2 class="text-4xl md:text-5xl font-black uppercase mb-4 font-montserrat tracking-tight leading-none text-white">
@@ -298,7 +286,6 @@
                 <p class="text-gray-400 mb-6 leading-relaxed font-roboto text-sm md:text-base">
                     Construimos páginas de aterrizaje estructuradas de forma limpia en código nativo, optimizadas para conversiones rápidas y preparadas para capturar clientes potenciales. Diseños no convencionales que cargan al instante y retienen la atención.
                 </p>
-                <!-- Precio Destacado en Quetzales -->
                 <div class="mb-8 p-4 bg-brand-dark-gray border border-neutral-800 rounded-xl max-w-xs">
                     <span class="text-xs text-gray-500 font-mono block uppercase tracking-wider">Inversión Inicial</span>
                     <span class="text-3xl font-black text-brand-pepilla font-montserrat block mt-1">DESDE Q1,500</span>
@@ -308,24 +295,17 @@
                 </a>
             </div>
             
-            <!-- Bloque de Imagen (Derecha) -->
             <div class="w-full md:w-1/2 h-96 md:h-auto relative bg-neutral-900">
-                <!-- NOTA: Aquí irá tu imagen con varias pestañas de diseños de Landing Pages -->
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pestañas de Diseños Landing Page" class="w-full h-full object-cover">
-                <!-- Overlay sutil con estética de la agencia -->
+                <img src="images/landing2.JPEG" alt="Pestañas de Diseños Landing Page" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-brand-black bg-opacity-20"></div>
             </div>
         </div>
 
-        <!-- PARTE 2: INFRAESTRUCTURA INCLUIDA (Imagen Izq, Texto Der con Fondo Blanco de NIGO) -->
         <div class="flex flex-col md:flex-row bg-white text-brand-black">
-            <!-- Bloque de Imagen (Izquierda) -->
             <div class="w-full md:w-1/2 h-96 md:h-auto order-2 md:order-1 bg-neutral-100">
-                <!-- NOTA: Aquí irá tu imagen de Hosting, Dominio y Cuentas de Correo -->
-                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hosting, Dominio y Servidores" class="w-full h-full object-cover">
+                <img src="images/servidor.JPEG" alt="Hosting, Dominio y Servidores" class="w-full h-full object-cover">
             </div>
             
-            <!-- Bloque de Texto (Derecha) -->
             <div class="w-full md:w-1/2 p-12 md:p-24 flex flex-col justify-center order-1 md:order-2 bg-white">
                 <h3 class="font-montserrat font-bold text-sm text-gray-500 mb-2 uppercase tracking-widest">// TODO INCLUIDO</h3>
                 <h2 class="text-4xl md:text-5xl font-black uppercase mb-4 font-montserrat tracking-tight leading-none text-brand-black">
@@ -335,7 +315,6 @@
                 <p class="text-gray-600 mb-8 leading-relaxed font-roboto text-sm md:text-base">
                     No te preocupes por configuraciones técnicas complejas. Todas nuestras soluciones web incluyen la base necesaria lista para operar de inmediato de forma profesional en internet por un año completo:
                 </p>
-                <!-- Lista de Características Técnicas -->
                 <ul class="space-y-3 font-mono text-xs md:text-sm text-neutral-800 mb-8">
                     <li class="flex items-center"><i class="fas fa-globe text-brand-hardware mr-3 text-base"></i> Dominio propio (.com o similar) por 1 año</li>
                     <li class="flex items-center"><i class="fas fa-server text-brand-hardware mr-3 text-base"></i> Hosting de alta velocidad por 1 año</li>
@@ -346,7 +325,6 @@
                 </a>
             </div>
         </div>
-
     </section>
 
     <!-- SEPARADOR PARALLAX 2 -->
@@ -356,11 +334,188 @@
         </div>
     </div>
 
-    <!-- SECCIÓN 3: LABORATORIO DE IA Y HUMOR VIRAL (Con videos reales en bucle) -->
+    <!-- SECCIÓN DE TIENDA: CATÁLOGO DE 6 PRODUCTOS -->
+    <section id="tienda" class="py-24 bg-brand-black border-b border-neutral-900">
+        <div class="container mx-auto px-6">
+            
+            <div class="mb-12 text-center md:text-left">
+                <span class="text-brand-hardware font-mono text-sm tracking-widest block mb-2">// MERCH DROP 01</span>
+                <h2 class="text-3xl md:text-4xl font-black text-white tracking-tighter uppercase font-montserrat">
+                    LA TIENDA / CATÁLOGO
+                </h2>
+                <div class="h-1 w-20 bg-brand-hardware mx-auto md:mx-0 mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+                <!-- PRODUCTO 1 -->
+                <div onclick="openProductModal(0)" class="bg-brand-dark-gray rounded-2xl border-2 border-black p-2 md:p-4 cursor-pointer hover:border-brand-hardware transition-all shadow-xl group">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-950 relative border border-neutral-800">
+                        <img src="images/tienda/playeras/blackreal.JPEG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Playera 1">
+                        <span class="absolute top-2 right-2 bg-black bg-opacity-75 text-[9px] font-mono text-brand-pepilla px-2 py-0.5 rounded border border-neutral-800 uppercase font-bold tracking-wider">DROP 01</span>
+                    </div>
+                    <div class="mt-3 px-1">
+                        <h3 class="font-montserrat font-black text-xs md:text-sm text-white tracking-tight uppercase truncate">FET'S LUCK</h3>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-brand-pepilla font-mono text-xs font-bold">Q175.00</span>
+                            <span class="text-[9px] font-mono text-gray-500 uppercase">Ver más →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTO 2 -->
+                <div onclick="openProductModal(1)" class="bg-brand-dark-gray rounded-2xl border-2 border-black p-2 md:p-4 cursor-pointer hover:border-brand-hardware transition-all shadow-xl group">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-950 relative border border-neutral-800">
+                        <img src="images/tienda/playeras/wifereal.JPEG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Playera 2">
+                        <span class="absolute top-2 right-2 bg-black bg-opacity-75 text-[9px] font-mono text-brand-pepilla px-2 py-0.5 rounded border border-neutral-800 uppercase font-bold tracking-wider">DROP 01</span>
+                    </div>
+                    <div class="mt-3 px-1">
+                        <h3 class="font-montserrat font-black text-xs md:text-sm text-white tracking-tight uppercase truncate">WIFE</h3>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-brand-pepilla font-mono text-xs font-bold">Q175.00</span>
+                            <span class="text-[9px] font-mono text-gray-500 uppercase">Ver más →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTO 3 -->
+                <div onclick="openProductModal(2)" class="bg-brand-dark-gray rounded-2xl border-2 border-black p-2 md:p-4 cursor-pointer hover:border-brand-hardware transition-all shadow-xl group">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-950 relative border border-neutral-800">
+                        <img src="images/tienda/playeras/cumplewreal.JPEG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Playera 3">
+                        <span class="absolute top-2 right-2 bg-black bg-opacity-75 text-[9px] font-mono text-brand-pepilla px-2 py-0.5 rounded border border-neutral-800 uppercase font-bold tracking-wider">DROP 01</span>
+                    </div>
+                    <div class="mt-3 px-1">
+                        <h3 class="font-montserrat font-black text-xs md:text-sm text-white tracking-tight uppercase truncate">CUMPLEAÑOS</h3>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-brand-pepilla font-mono text-xs font-bold">Q175.00</span>
+                            <span class="text-[9px] font-mono text-gray-500 uppercase">Ver más →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTO 4 -->
+                <div onclick="openProductModal(3)" class="bg-brand-dark-gray rounded-2xl border-2 border-black p-2 md:p-4 cursor-pointer hover:border-brand-hardware transition-all shadow-xl group">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-950 relative border border-neutral-800">
+                        <img src="images/tienda/playeras/wcat1real.JPEG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Playera 4">
+                        <span class="absolute top-2 right-2 bg-black bg-opacity-75 text-[9px] font-mono text-brand-pepilla px-2 py-0.5 rounded border border-neutral-800 uppercase font-bold tracking-wider">DROP 01</span>
+                    </div>
+                    <div class="mt-3 px-1">
+                        <h3 class="font-montserrat font-black text-xs md:text-sm text-white tracking-tight uppercase truncate">CAT PEOPLE</h3>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-brand-pepilla font-mono text-xs font-bold">Q175.00</span>
+                            <span class="text-[9px] font-mono text-gray-500 uppercase">Ver más →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTO 5 -->
+                <div onclick="openProductModal(4)" class="bg-brand-dark-gray rounded-2xl border-2 border-black p-2 md:p-4 cursor-pointer hover:border-brand-hardware transition-all shadow-xl group">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-950 relative border border-neutral-800">
+                        <img src="images/tienda/playeras/bcat2real.JPEG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Playera 5">
+                        <span class="absolute top-2 right-2 bg-black bg-opacity-75 text-[9px] font-mono text-brand-pepilla px-2 py-0.5 rounded border border-neutral-800 uppercase font-bold tracking-wider">DROP 01</span>
+                    </div>
+                    <div class="mt-3 px-1">
+                        <h3 class="font-montserrat font-black text-xs md:text-sm text-white tracking-tight uppercase truncate">CAT GUN</h3>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-brand-pepilla font-mono text-xs font-bold">Q175.00</span>
+                            <span class="text-[9px] font-mono text-gray-500 uppercase">Ver más →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRODUCTO 6 -->
+                <div onclick="openProductModal(5)" class="bg-brand-dark-gray rounded-2xl border-2 border-black p-2 md:p-4 cursor-pointer hover:border-brand-hardware transition-all shadow-xl group">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden bg-neutral-950 relative border border-neutral-800">
+                        <img src="images/tienda/playeras/bbeerreal.JPEG" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt="Playera 6">
+                        <span class="absolute top-2 right-2 bg-black bg-opacity-75 text-[9px] font-mono text-brand-pepilla px-2 py-0.5 rounded border border-neutral-800 uppercase font-bold tracking-wider">DROP 01</span>
+                    </div>
+                    <div class="mt-3 px-1">
+                        <h3 class="font-montserrat font-black text-xs md:text-sm text-white tracking-tight uppercase truncate">BEER O´CLOCK</h3>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="text-brand-pepilla font-mono text-xs font-bold">Q175.00</span>
+                            <span class="text-[9px] font-mono text-gray-500 uppercase">Ver más →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VENTANA EMERGENTE (MODAL TIENDA) -->
+    <div id="productModal" class="fixed inset-0 z-50 overflow-y-auto hidden bg-black bg-opacity-90 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-dark-gray w-full max-w-2xl rounded-3xl border-4 border-black text-white p-6 relative max-h-[90vh] overflow-y-auto shadow-2xl">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black border border-neutral-800 flex items-center justify-center text-gray-400 hover:text-brand-hardware transition-colors">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+                <div class="flex flex-col space-y-3">
+                    <div class="aspect-[3/4] bg-neutral-950 rounded-xl overflow-hidden border-2 border-black relative">
+                        <img id="modalMainImg" src="" class="w-full h-full object-cover transition-opacity duration-200">
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="changeModalImg(0)" class="modal-thumb border border-brand-hardware rounded-lg overflow-hidden aspect-[3/4] p-0.5 bg-neutral-900"><img id="thumb0" src="" class="w-full h-full object-cover rounded-md"></button>
+                        <button onclick="changeModalImg(1)" class="modal-thumb border border-neutral-800 rounded-lg overflow-hidden aspect-[3/4] p-0.5 bg-neutral-900 opacity-50"><img id="thumb1" src="" class="w-full h-full object-cover rounded-md"></button>
+                        <button onclick="changeModalImg(2)" class="modal-thumb border border-neutral-800 rounded-lg overflow-hidden aspect-[3/4] p-0.5 bg-neutral-900 opacity-50"><img id="thumb2" src="" class="w-full h-full object-cover rounded-md"></button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-between">
+                    <div>
+                        <span id="modalMeta" class="text-brand-pepilla font-mono text-[10px] tracking-widest uppercase block">// EDICIÓN LIMITADA</span>
+                        <h3 id="modalTitle" class="text-xl font-black font-montserrat tracking-tight mt-0.5 uppercase">NOMBRE</h3>
+                        
+                        <div class="my-3 p-3 bg-neutral-900 border border-neutral-800 rounded-xl flex justify-between items-center">
+                            <span class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Precio</span>
+                            <span id="modalPrice" class="text-2xl font-black text-brand-pepilla font-montserrat">Q175.00</span>
+                        </div>
+
+                        <p id="modalDesc" class="font-roboto text-xs text-gray-400 leading-relaxed mb-4">Descripción...</p>
+
+                        <div class="mb-4">
+                            <span class="text-[10px] font-mono font-black text-brand-hardware block mb-2 uppercase tracking-wider">● Color:</span>
+                            <div id="modalColorsContainer" class="flex flex-wrap gap-2"></div>
+                        </div>
+
+                        <div class="mb-4">
+                            <span class="text-[10px] font-mono font-black text-brand-hardware block mb-2 uppercase tracking-wider">● Medida:</span>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button onclick="selectModalSize('S', this)" class="modal-size-btn py-2 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-center text-white">S</button>
+                                <button onclick="selectModalSize('M', this)" class="modal-size-btn py-2 rounded-lg border border-brand-pepilla bg-neutral-900 font-mono text-xs font-bold text-center text-brand-pepilla shadow-[0_0_6px_#39ff14]">M</button>
+                                <button onclick="selectModalSize('L', this)" class="modal-size-btn py-2 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-center text-white">L</button>
+                                <button onclick="selectModalSize('XL', this)" class="modal-size-btn py-2 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-center text-white">XL</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <span class="text-[10px] font-mono font-black text-brand-hardware block mb-2 uppercase tracking-wider">● Cantidad:</span>
+                            <div class="flex items-center space-x-2 w-28 bg-neutral-900 border border-neutral-800 p-0.5 rounded-lg">
+                                <button onclick="updateModalQty(-1)" class="w-7 h-7 rounded bg-neutral-800 font-mono text-xs font-bold flex items-center justify-center">-</button>
+                                <span id="modalQtyDisplay" class="flex-1 text-center font-mono text-xs font-bold">1</span>
+                                <button onclick="updateModalQty(1)" class="w-7 h-7 rounded bg-neutral-800 font-mono text-xs font-bold flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="sendModalOrder()" class="w-full bg-brand-pepilla hover:bg-white text-black font-montserrat font-black text-xs py-3.5 px-4 rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] uppercase tracking-widest transition-all flex items-center justify-center space-x-2">
+                        <i class="fab fa-whatsapp text-base"></i>
+                        <span>Pedir por WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEPARADOR PARALLAX 3 -->
+    <div class="separador-parallax bg-separador-3">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <span class="text-xs font-mono tracking-[0.3em] text-brand-hardware uppercase font-bold">// RADICAL MARKETING STAGE // EXPERIMENTS LAB</span>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 3: LABORATORIO DE IA Y HUMOR VIRAL -->
     <section id="humor-ia" class="min-h-screen py-20 bg-brand-dark-gray flex items-center border-t border-gray-900">
         <div class="container mx-auto px-6">
             
-            <!-- Encabezado y Texto Descriptivo con Zona de Colaboraciones -->
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="text-brand-pepilla font-mono text-sm tracking-widest block mb-2">// EXPERIMENTACIÓN VIRAL</span>
                 <h2 class="text-3xl md:text-5xl font-black text-white tracking-tighter">LABORATORIO DE HUMOR & IA</h2>
@@ -369,25 +524,17 @@
                     <strong class="text-brand-pepilla block mt-2 font-montserrat tracking-wide uppercase text-xs">¡Estamos abiertos a colaboraciones en nuestras redes sociales para potenciar tu marca!</strong>
                 </p>
 
-                <!-- BOTONERA DE REDES SOCIALES (Hover premium + Arroba de Threads) -->
                 <div class="flex flex-col items-center mt-8">
                     <div class="flex flex-wrap justify-center items-center gap-6">
-                        <!-- Facebook -->
                         <a href="https://www.facebook.com/profile.php?id=100063489641105" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-blue-500 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]" title="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        
-                        <!-- Instagram -->
-                        <a href="Thttps://www.instagram.com/pepitoria.estudio/" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-pink-500 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.4)]" title="Instagram">
+                        <a href="https://www.instagram.com/pepitoria.estudio/" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-pink-500 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.4)]" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        
-                        <!-- TikTok -->
-                        <a href="Thttps://www.tiktok.com/@pepitoria.estudio" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]" title="TikTok">
+                        <a href="https://www.tiktok.com/@pepitoria.estudio" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-cyan-400 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]" title="TikTok">
                             <i class="fab fa-tiktok"></i>
                         </a>
-                        
-                        <!-- YouTube -->
                         <a href="https://www.youtube.com/@pepitoriaestudio" target="_blank" class="w-12 h-12 bg-neutral-900 border border-neutral-800 text-gray-400 rounded-xl flex items-center justify-center text-xl transition-all duration-300 ease-out hover:scale-110 hover:-translate-y-1 hover:text-red-500 hover:border-red-500 hover:shadow-[0_0_15px_rgba(239,68,68,0.4)]" title="YouTube">
                             <i class="fab fa-youtube"></i>
                         </a>
@@ -395,7 +542,6 @@
                 </div>
             </div>
 
-            <!-- Gran Consola Central CRT Estilo Monitor Antiguo -->
             <div class="max-w-4xl mx-auto bg-neutral-900 p-4 md:p-8 rounded-3xl border-4 border-neutral-950 shadow-2xl">
                 <div class="crt-screen bg-neutral-950 border border-brand-pepilla rounded-2xl p-6 min-h-[300px]">
                     <div class="flex justify-between font-mono text-[11px] text-brand-pepilla mb-4 border-b border-brand-pepilla border-opacity-20 pb-2">
@@ -403,13 +549,9 @@
                         <span class="animate-pulse">● HUMOR_METER: MAX_VIRAL</span>
                     </div>
 
-                    <!-- Grid de Videos Organizados con Reproducción Nativa Directa -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        
-                        <!-- Video Item 1 -->
                         <a href="https://www.facebook.com/share/r/18w5pSxd7V/" target="_blank" class="bg-black bg-opacity-60 border border-brand-pepilla border-opacity-30 p-4 rounded-xl hover:border-opacity-100 hover:shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all group block cursor-pointer">
                             <div class="aspect-video bg-neutral-900 rounded mb-3 flex items-center justify-center group-hover:scale-105 transition-transform relative overflow-hidden border border-neutral-800">
-                                <!-- Enlace de stock online optimizado para la demo. Cuando subas tus archivos, cambia la ruta 'src' a 'videos/humor-viral-1.mp4' -->
                                 <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-75 transition-opacity">
                                     <source src="https://www.facebook.com/share/r/18w5pSxd7V/" type="video/mp4">
                                     <source src="video/lucha.mp4" type="video/mp4">
@@ -420,10 +562,8 @@
                             <h4 class="text-sm font-bold text-white font-montserrat mt-1">Lucha Libre WWF</h4>
                         </a>
 
-                        <!-- Video Item 2 -->
                         <a href="https://www.instagram.com/p/DVHuYHojUEC/" target="_blank" class="bg-black bg-opacity-60 border border-brand-pepilla border-opacity-30 p-4 rounded-xl hover:border-opacity-100 hover:shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all group block cursor-pointer">
                             <div class="aspect-video bg-neutral-900 rounded mb-3 flex items-center justify-center group-hover:scale-105 transition-transform relative overflow-hidden border border-neutral-800">
-                                <!-- Enlace de stock online optimizado para la demo. Cuando subas tus archivos, cambia la ruta 'src' a 'videos/humor-viral-2.mp4' -->
                                 <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-75 transition-opacity">
                                     <source src="https://www.instagram.com/p/DVHuYHojUEC/" type="video/mp4">
                                     <source src="video/spider.mp4" type="video/mp4">
@@ -434,10 +574,8 @@
                             <h4 class="text-sm font-bold text-white font-montserrat mt-1">Spider-Ham </h4>
                         </a>
 
-                        <!-- Video Item 3 -->
                         <a href="https://www.tiktok.com/@pepitoria.estudio/video/7603815288106192148?is_from_webapp=1&sender_device=pc&web_id=7502243645841278470" target="_blank" class="bg-black bg-opacity-60 border border-brand-pepilla border-opacity-30 p-4 rounded-xl hover:border-opacity-100 hover:shadow-[0_0_15px_rgba(57,255,20,0.2)] transition-all group block cursor-pointer">
                             <div class="aspect-video bg-neutral-900 rounded mb-3 flex items-center justify-center group-hover:scale-105 transition-transform relative overflow-hidden border border-neutral-800">
-                                <!-- Enlace de stock online optimizado para la demo. Cuando subas tus archivos, cambia la ruta 'src' a 'videos/humor-viral-3.mp4' -->
                                 <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-75 transition-opacity">
                                     <source src="https://assets.mixkit.co/videos/preview/mixkit-rotating-polygon-network-animation-31610-large.mp4" type="video/mp4">
                                     <source src="video/horse.mp4" type="video/mp4">
@@ -447,25 +585,21 @@
                             <span class="font-mono text-[10px] text-gray-500 block">PROJECT_03 // TECH PARODY</span>
                             <h4 class="text-sm font-bold text-white font-montserrat mt-1">Caballo Guatemala</h4>
                         </a>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-<!-- SEPARADOR PARALLAX 3 -->
-    <div class="separador-parallax bg-separador-3">
+    <!-- SEPARADOR PARALLAX 4 -->
+    <div class="separador-parallax bg-separador-4">
         <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <span class="text-xs font-mono tracking-[0.3em] text-brand-hardware uppercase font-bold">// DIGITAL MATRIX // GUATEMALA REGION</span>
+            <span class="text-xs font-mono tracking-[0.3em] text-brand-pepilla uppercase font-bold">// DIGITAL MATRIX // GUATEMALA REGION </span>
         </div>
     </div>
 
-    <!-- SECCIÓN 4: CONTACTO OPTIMIZADO (Sin mapa, con Formulario y WhatsApp Directo) -->
+    <!-- SECCIÓN 5: CONTACTO -->
     <section id="contacto" class="flex flex-col md:flex-row bg-brand-black text-white border-t border-gray-900">
-        
-        <!-- Bloque Izquierdo: Formulario de Contacto Tradicional -->
         <div class="w-full md:w-1/2 p-12 md:p-24">
             <span class="text-brand-pepilla font-mono text-xs tracking-widest block mb-2">// COTIZACIÓN EXPRESA</span>
             <h2 class="text-3xl font-black uppercase mb-8 font-montserrat tracking-tight">CONTACT US</h2>
@@ -491,7 +625,6 @@
             </form>
         </div>
 
-        <!-- Bloque Derecho: Canal de WhatsApp y Datos de Guatemala -->
         <div class="w-full md:w-1/2 p-12 md:p-24 bg-brand-dark-gray flex flex-col justify-center border-l border-neutral-900">
             <span class="text-brand-hardware font-mono text-xs tracking-widest block mb-2">// RESPUESTA INMEDIATA</span>
             <h2 class="text-3xl font-black uppercase mb-6 font-montserrat tracking-tight">HABLEMOS DE UNA VEZ</h2>
@@ -499,7 +632,6 @@
                 ¿Prefieres una comunicación más rápida para arrancar tu proyecto? Escríbenos directamente a nuestra línea oficial de atención en Guatemala para coordinar una llamada o sesión técnica.
             </p>
             
-            <!-- Tarjeta de WhatsApp -->
             <div class="space-y-6">
                 <a href="https://wa.me/50254903915" target="_blank" class="flex items-center p-4 bg-emerald-950 bg-opacity-40 border border-emerald-500 rounded-2xl group hover:bg-emerald-500 hover:text-black transition-all duration-300 max-w-sm">
                     <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center mr-4 text-black group-hover:bg-black group-hover:text-emerald-500 transition-colors">
@@ -511,7 +643,6 @@
                     </div>
                 </a>
 
-                <!-- Ubicación -->
                 <div class="flex items-center p-4 bg-neutral-900 border border-neutral-800 rounded-2xl max-w-sm">
                     <div class="w-12 h-12 bg-neutral-800 rounded-xl flex items-center justify-center mr-4 text-brand-pepilla">
                         <i class="fas fa-map-marker-alt text-xl"></i>
@@ -523,15 +654,12 @@
                 </div>
             </div>
         </div>
-
     </section>
 
-    <!-- FOOTER PREMIUM ADAPTADO A PEPITORIA ESTUDIO -->
+    <!-- FOOTER -->
     <footer class="bg-brand-white text-brand-black py-16 text-sm font-roboto border-t border-gray-200">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                
-                <!-- Identidad de la Agencia -->
                 <div class="col-span-1 md:col-span-1">
                     <a href="#" class="logo-3d text-xl tracking-tighter uppercase inline-block text-brand-black mb-4" style="text-shadow: 1px 1px 0px #eee, 2px 2px 0px #eee, 3px 3px 0px #eee, 4px 4px 0px #111, 5px 5px 0px #111;">
                         PEPITORIA<br><span class="text-brand-pepilla">ESTUDIO</span>
@@ -539,30 +667,27 @@
                     <p class="text-gray-500 text-xs mt-2 font-mono">// DIRECCIÓN DE ARTE RADICAL & IA</p>
                 </div>
 
-                <!-- Redes Sociales Activas -->
                 <div>
                     <h5 class="font-bold uppercase mb-4 font-montserrat text-xs tracking-wider">Redes Sociales</h5>
                     <ul class="space-y-2 text-gray-500 text-xs font-mono">
-                        <li><a href="TU_LINK_DE_FACEBOOK" target="_blank" class="hover:text-brand-black transition-colors">● Facebook</a></li>
-                        <li><a href="TU_LINK_DE_INSTAGRAM" target="_blank" class="hover:text-brand-black transition-colors">● Instagram</a></li>
-                        <li><a href="TU_LINK_DE_TIKTOK" target="_blank" class="hover:text-brand-black transition-colors">● TikTok</a></li>
-                        <li><a href="TU_LINK_DE_THREADS" target="_blank" class="hover:text-brand-black transition-colors">● Threads</a></li>
-                        <li><a href="TU_LINK_DE_YOUTUBE" target="_blank" class="hover:text-brand-black transition-colors">● YouTube</a></li>
+                        <li><a href="https://www.facebook.com/profile.php?id=100063489641105" target="_blank" class="hover:text-brand-black transition-colors">● Facebook</a></li>
+                        <li><a href="https://www.instagram.com/pepitoria.estudio/" target="_blank" class="hover:text-brand-black transition-colors">● Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@pepitoria.estudio" target="_blank" class="hover:text-brand-black transition-colors">● TikTok</a></li>
+                        <li><a href="#" target="_blank" class="hover:text-brand-black transition-colors">● Threads</a></li>
+                        <li><a href="https://www.youtube.com/@pepitoriaestudio" target="_blank" class="hover:text-brand-black transition-colors">● YouTube</a></li>
                     </ul>
                 </div>
 
-                <!-- Navegación de Servicios -->
                 <div>
                     <h5 class="font-bold uppercase mb-4 font-montserrat text-xs tracking-wider">Servicios</h5>
                     <ul class="space-y-2 text-gray-500 text-xs font-mono">
                         <li><a href="#anuncios" class="hover:text-brand-black transition-colors">⚡ Anuncios Publicitarios</a></li>
                         <li><a href="#anuncios" class="hover:text-brand-black transition-colors">🎨 Diseño Gráfico</a></li>
                         <li><a href="#landings" class="hover:text-brand-black transition-colors">🚀 Landing Pages</a></li>
-                        <li><a href="#humor-ia" class="hover:text-brand-black transition-colors">🤖 Laboratorio IA & Humor</a></li>
+                        <li><a href="#tienda" class="hover:text-brand-black transition-colors">🛍️ Tienda Oficial</a></li>
                     </ul>
                 </div>
 
-                <!-- Información de Contacto Real -->
                 <div>
                     <h5 class="font-bold uppercase mb-4 font-montserrat text-xs tracking-wider">Contacto Oficial</h5>
                     <ul class="space-y-3 text-gray-500 text-xs">
@@ -573,139 +698,458 @@
                 </div>
             </div>
 
-            <!-- Derechos de Autor -->
             <div class="border-t border-gray-200 pt-8 text-center text-gray-400 text-xs font-mono">
                 &copy; 2026 Pepitoria Estudio. Todos los derechos reservados. Diseñado para alta velocidad de conversión.
             </div>
         </div>
     </footer>
 
+    <!-- WIDGET DE AGENTE IA FLOTANTE (BRUTALISTA NEÓN) -->
+    <div id="ai-agent-widget" class="fixed bottom-6 right-6 z-50 font-roboto">
+        
+        <button onclick="toggleAiChat()" id="btn-open-chat" class="w-14 h-14 bg-brand-black text-brand-pepilla rounded-full border-2 border-brand-pepilla flex items-center justify-center text-xl shadow-[0_0_15px_rgba(57,255,20,0.4)] hover:bg-brand-pepilla hover:text-black hover:scale-110 active:scale-95 transition-all duration-300">
+            <i class="fas fa-robot"></i>
+        </button>
 
-    <!-- SCRIPTS DE INTERACTIVIDAD NATIVOS ACTUALIZADOS (Botonera, Perilla, Compilador) -->
+        <div id="ai-chat-window" class="hidden absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-96 h-[480px] bg-brand-dark-gray border-4 border-black rounded-2xl flex flex-col shadow-2xl overflow-hidden text-white">
+            
+            <div class="bg-black p-4 border-b-2 border-black flex justify-between items-center font-mono text-xs text-brand-pepilla">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-pepilla animate-pulse"></span>
+                    <span class="tracking-widest">PEPITORIA_CORE_v1.0</span>
+                </div>
+                <button onclick="toggleAiChat()" class="text-gray-500 hover:text-brand-hardware p-1 transition-colors">
+                    <i class="fas fa-times text-sm"></i>
+                </button>
+            </div>
+
+            <div id="chat-messages-container" class="flex-1 p-4 overflow-y-auto space-y-3 font-roboto text-xs leading-relaxed bg-brand-black bg-opacity-40">
+                <div class="flex flex-col items-start max-w-[85%]">
+                    <span class="font-mono text-[9px] text-brand-hardware mb-1">// AGENTE_IA_PEPITORIA</span>
+                    <div class="bg-neutral-900 border border-neutral-800 p-3 rounded-xl rounded-tl-none text-gray-300 shadow-md">
+                        ¡Qué tal! Bienvenido al Core de Pepitoria Estudio. Soy tu asistente de Inteligencia Artificial. ¿En qué módulo del sistema estás interesado hoy? 
+                        <div class="mt-3 flex flex-wrap gap-2 font-mono text-[10px]">
+                        <button onclick="triggerQuickResponse('anuncios')" class="bg-black border border-neutral-700 hover:border-brand-hardware text-gray-400 hover:text-brand-hardware px-2.5 py-1 rounded transition-colors">1. Anuncios Publicitarios</button>
+                        <button onclick="triggerQuickResponse('diseno')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">2. Diseño Gráfico & Branding</button>
+                        <button onclick="triggerQuickResponse('web')" class="bg-black border border-neutral-700 hover:border-white text-gray-400 hover:text-white px-2.5 py-1 rounded transition-colors">3. Páginas Web / Landings</button>
+                        <button onclick="triggerQuickResponse('tienda')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">4. Comprar Playeras</button>                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 bg-black border-t-2 border-black flex items-center space-x-2">
+                <input type="text" id="chat-user-input" onkeypress="handleChatKey(event)" placeholder="Escribe un comando o pregunta..." class="flex-1 bg-brand-dark-gray border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-brand-pepilla transition-colors">
+                <button onclick="handleUserMessageSubmit()" class="bg-neutral-900 border border-neutral-800 text-brand-pepilla text-xs px-3 py-2 rounded-lg font-mono hover:bg-brand-pepilla hover:text-black transition-colors">SEND</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- INTERACTIVIDAD JAVASCRIPT -->
     <script>
-        // BASE DE DATOS DE CONTENIDO COMERCIAL (Configurado con fallbacks de video en línea para previsualización inmediata)
+        // PORTAFOLIO AUDIOVISUAL
         const portfolioData = {
             anuncios: [
-                { 
-                    sector: 'GASTRONÓMICO', 
-                    formato: 'Video Comercial', 
-                    titulo: 'Spot de Comida Rápida (Hamburguesería)', 
-                    // Enlace online interactivo de alta velocidad. Cuando subas tus videos, puedes cambiar esta ruta a 'videos/hamburgesa.mp4' o similar.
-                    src: 'video/hamburgesa.mp4' 
-                },
-                { 
-                    sector: 'RETAIL / VENTAS', 
-                    formato: 'Reel de Conversión', 
-                    titulo: 'Campaña de Ofertas de Temporada', 
-                    src: 'video/wapa.mp4' 
-                },
-                { 
-                    sector: 'SERVICIOS', 
-                    formato: 'Anuncio Publicitario', 
-                    titulo: 'Presentación de Servicios Médicos/Estéticos', 
-                    src: 'video/travel.mp4' 
-                }
+                { sector: 'GASTRONÓMICO', formato: 'Video Comercial', titulo: 'Spot de Comida Rápida (Hamburguesería)', src: 'video/hamburgesa.mp4' },
+                { sector: 'RETAIL / VENTAS', formato: 'Reel de Conversión', titulo: 'Campaña de Ofertas de Temporada', src: 'video/wapa.mp4' },
+                { sector: 'SERVICIOS', formato: 'Anuncio Publicitario', titulo: 'Presentación de Servicios Médicos/Estéticos', src: 'video/travel.mp4' }
             ],
             branding: [
-                { 
-                    sector: 'IDENTIDAD', 
-                    formato: 'Manual de Marca', 
-                    titulo: 'Logotipo Corporativo & Papelería', 
-                    src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1350&q=80' // Imagen estática premium como fallback de diseño
-                },
-                { 
-                    sector: 'PROMO / IMPRESOS', 
-                    formato: 'Flyer Digital & Volante', 
-                    titulo: 'Diseño publicitario para Lanzamientos', 
-                    src: 'https://images.unsplash.com/photo-1541462608141-2f58c6e68e5d?auto=format&fit=crop&w=1350&q=80'
-                },
-                { 
-                    sector: 'EXTERIORES', 
-                    formato: 'Valla / Mupie / Banner', 
-                    titulo: 'Artes de Vías Públicas y Formatos Grandes', 
-                    src: 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=1350&q=80'
-                }
+                { sector: 'IDENTIDAD', formato: 'Manual de Marca', titulo: 'Logotipo Corporativo & Papelería', src: 'images/branding.JPEG' },
+                { sector: 'PROMO / IMPRESOS', formato: 'Flyer Digital & Volante', titulo: 'Diseño publicitario para Lanzamientos', src: 'images/anuncio.JPEG' },
+                { sector: 'EXTERIORES', formato: 'Valla / Mupie / Banner', titulo: 'Artes de Vías Públicas y Formatos Grandes', src: 'images/mupies.JPEG' }
             ]
         };
 
-        const mediaDisplay = document.getElementById('mediaDisplay'); 
-        const mediaTitle = document.getElementById('mediaTitle');
-        const mediaClient = document.getElementById('mediaClient');
-        const mediaType = document.getElementById('mediaType');
+        function selectProject(category, index, buttonElement) {
+            document.querySelectorAll('.indicator').forEach(ind => {
+                ind.className = 'w-2 h-2 rounded-full bg-neutral-600 indicator';
+            });
+            document.querySelectorAll('.portfolio-btn').forEach(btn => {
+                btn.classList.remove('border-brand-pepilla', 'border-brand-hardware');
+            });
 
-       function selectProject(category, index, buttonElement) {
-    document.querySelectorAll('.indicator').forEach(ind => {
-        ind.className = 'w-2 h-2 rounded-full bg-neutral-600 indicator';
-    });
-    document.querySelectorAll('.portfolio-btn').forEach(btn => {
-        btn.classList.remove('border-brand-pepilla', 'border-brand-hardware');
-    });
-
-    const indicator = buttonElement.querySelector('.indicator');
-    if (category === 'anuncios') {
-        indicator.className = 'w-2 h-2 rounded-full bg-brand-hardware shadow-[0_0_8px_#f2994a] indicator';
-        buttonElement.classList.add('border-brand-hardware');
-    } else {
-        indicator.className = 'w-2 h-2 rounded-full bg-brand-pepilla shadow-[0_0_8px_#39ff14] indicator';
-        buttonElement.classList.add('border-brand-pepilla');
-    }
-
-    const data = portfolioData[category][index];
-    
-    // CAMBIO CLAVE: Obtenemos el elemento que está vivo en el DOM en este instante
-    let currentMedia = document.getElementById('mediaDisplay');
-    currentMedia.style.opacity = 0;
-    
-    setTimeout(() => {
-        // Validación para soportar tanto imágenes de branding como videos de anuncios
-        if (data.src.endsWith('.mp4') || data.src.includes('mixkit.co')) {
-            // Si no es un elemento de video, creamos uno nuevo nativo
-            if (currentMedia.tagName !== 'VIDEO') {
-                const newVideo = document.createElement('video');
-                newVideo.id = 'mediaDisplay';
-                newVideo.autoplay = true;
-                newVideo.loop = true;
-                newVideo.muted = true;
-                newVideo.playsInline = true;
-                newVideo.className = 'w-full h-full object-cover transition-opacity duration-150';
-                currentMedia.parentNode.replaceChild(newVideo, currentMedia);
-                currentMedia = newVideo; // Actualizamos la referencia local
+            const indicator = buttonElement.querySelector('.indicator');
+            if (category === 'anuncios') {
+                indicator.className = 'w-2 h-2 rounded-full bg-brand-hardware shadow-[0_0_8px_#f2994a] indicator';
+                buttonElement.classList.add('border-brand-hardware');
+            } else {
+                indicator.className = 'w-2 h-2 rounded-full bg-brand-pepilla shadow-[0_0_8px_#39ff14] indicator';
+                buttonElement.classList.add('border-brand-pepilla');
             }
-            currentMedia.src = data.src;
-            currentMedia.load();
-            currentMedia.play().catch(e => console.log("Autoplay bloqueado"));
-        } else {
-            // Si es una imagen y la pantalla actual es un video, la reemplazamos por una etiqueta <img>
-            if (currentMedia.tagName !== 'IMG') {
-                const newImg = document.createElement('img');
-                newImg.id = 'mediaDisplay';
-                newImg.className = 'w-full h-full object-cover transition-opacity duration-150';
-                currentMedia.parentNode.replaceChild(newImg, currentMedia);
-                currentMedia = newImg; // Actualizamos la referencia local
-            }
-            currentMedia.src = data.src;
+
+            const data = portfolioData[category][index];
+            let currentMedia = document.getElementById('mediaDisplay');
+            currentMedia.style.opacity = 0;
+            
+            setTimeout(() => {
+                if (data.src.endsWith('.mp4') || data.src.includes('mixkit.co')) {
+                    if (currentMedia.tagName !== 'VIDEO') {
+                        const newVideo = document.createElement('video');
+                        newVideo.id = 'mediaDisplay';
+                        newVideo.autoplay = true;
+                        newVideo.loop = true;
+                        newVideo.muted = true;
+                        newVideo.playsInline = true;
+                        newVideo.className = 'w-full h-full object-cover transition-opacity duration-150';
+                        currentMedia.parentNode.replaceChild(newVideo, currentMedia);
+                        currentMedia = newVideo;
+                    }
+                    currentMedia.src = data.src;
+                    currentMedia.load();
+                    currentMedia.play().catch(e => console.log("Autoplay bloqueado"));
+                } else {
+                    if (currentMedia.tagName !== 'IMG') {
+                        const newImg = document.createElement('img');
+                        newImg.id = 'mediaDisplay';
+                        newImg.className = 'w-full h-full object-cover transition-opacity duration-150';
+                        currentMedia.parentNode.replaceChild(newImg, currentMedia);
+                        currentMedia = newImg;
+                    }
+                    currentMedia.src = data.src;
+                }
+
+                mediaTitle.innerText = data.titulo;
+                mediaType.innerText = "SECTOR: " + data.sector;
+                mediaClient.innerText = "FORMATO: " + data.formato;
+                currentMedia.style.opacity = 1;
+            }, 150);
         }
-
-        mediaTitle.innerText = data.titulo;
-        mediaType.innerText = "SECTOR: " + data.sector;
-        mediaClient.innerText = "FORMATO: " + data.formato;
-        currentMedia.style.opacity = 1;
-    }, 150);
-}
 
         window.addEventListener('DOMContentLoaded', () => {
             const firstBtn = document.querySelector('.portfolio-btn');
             if (firstBtn) selectProject('anuncios', 0, firstBtn);
         });
 
-        // LOADER DE PÁGINA INICIAL
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            if (loader) {
-                loader.classList.add('opacity-0');
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
+        // BASE DE DATOS DE LA TIENDA MODULAR (6 PRODUCTOS)
+        const productsDatabase = [
+            {
+                title: "FET'S LUCK",
+                price: 175,
+                desc: "Frente 100% minimalista y limpio para mantener el misterio. Estampado de alto impacto en la espalda con tipografía e impresión impecable y nítida sobre tela premium.",
+                colors: {
+                    "Negro": ["images/tienda/playeras/blackreal.JPEG", "images/tienda/playeras/blackback.PNG", "images/tienda/playeras/blackfront.PNG"],
+                    "Blanco": ["images/tienda/playeras/whitereal.JPEG", "images/tienda/playeras/whiteback.PNG", "images/tienda/playeras/whitefront.PNG"]
+                }
+            },
+            {
+                title: "WIFE",
+                price: 175,
+                desc: "Descripción de tu segundo diseño conceptual exclusivo de Pepitoria Drop 01.",
+                colors: {
+                    "Negro": ["images/tienda/playeras/wifereal.JPEG", "images/tienda/playeras/wifeback.PNG", "images/tienda/playeras/blackfront.PNG"],
+                    "Blanco": ["images/tienda/playeras/wwifereal.JPEG", "images/tienda/playeras/wifewback.PNG", "images/tienda/playeras/whitefront.PNG"]
+                }
+            },
+            {
+                title: "CUMPLEAÑOS",
+                price: 175,
+                desc: "Descripción de tu tercer diseño conceptual exclusivo de Pepitoria Drop 01.",
+                colors: {
+                    "Negro": ["images/tienda/playeras/cumplebreal.JPEG", "images/tienda/playeras/cumpleb.PNG", "images/tienda/playeras/backblack.JPEG"],
+                    "Blanco": ["images/tienda/playeras/cumplewreal.JPEG", "images/tienda/playeras/cumplew.PNG", "images/tienda/playeras/backwhite.JPEG"]
+                }
+            },
+            {
+                title: "CAT PEOPLE",
+                price: 175,
+                desc: "Descripción de tu cuarto diseño conceptual exclusivo de Pepitoria Drop 01.",
+                colors: {
+                    "Negro": ["images/tienda/playeras/bcat1real.JPEG", "images/tienda/playeras/bcat1.PNG", "images/tienda/playeras/backblack.JPEG"],
+                    "Blanco": ["images/tienda/playeras/wcat1real.JPEG", "images/tienda/playeras/wcat1.PNG", "images/tienda/playeras/backwhite.JPEG"]
+                }
+            },
+            {
+                title: "CAT GUN",
+                price: 175,
+                desc: "Descripción de tu quinto diseño conceptual exclusivo de Pepitoria Drop 01.",
+                colors: {
+                    "Negro": ["images/tienda/playeras/bcat2real.JPEG", "images/tienda/playeras/bcat2.PNG", "images/tienda/playeras/backblack.JPEG"],
+                    "Blanco": ["images/tienda/playeras/wcat2real.JPEG", "images/tienda/playeras/wcat2.PNG", "images/tienda/playeras/backwhite.JPEG"]
+                }
+            },
+            {
+                title: "BEER O´CLOCK",
+                price: 175,
+                desc: "Descripción de tu sexto diseño conceptual exclusivo de Pepitoria Drop 01.",
+                colors: {
+                    "Negro": ["images/tienda/playeras/bbeerreal.JPEG", "images/tienda/playeras/bbeer.PNG", "images/tienda/playeras/backblack.JPEG"],
+                    "Blanco": ["images/tienda/playeras/wbeerreal.JPEG", "images/tienda/playeras/wbeer.PNG", "images/tienda/playeras/backwhite.JPEG"]
+                }
             }
-        });
+        ];
+
+        let currentProductIdx = 0;
+        let selectedModalSize = "M";
+        let selectedColor = "";
+        let modalQuantity = 1;
+
+        function openProductModal(index) {
+            currentProductIdx = index;
+            const p = productsDatabase[index];
+            selectedModalSize = "M";
+            modalQuantity = 1;
+
+            document.getElementById('modalTitle').innerText = p.title;
+            document.getElementById('modalPrice').innerText = "Q" + p.price.toFixed(2);
+            document.getElementById('modalDesc').innerText = p.desc;
+            document.getElementById('modalQtyDisplay').innerText = modalQuantity;
+
+            const colorsContainer = document.getElementById('modalColorsContainer');
+            colorsContainer.innerHTML = "";
+            
+            const availableColors = Object.keys(p.colors);
+            selectedColor = availableColors[0];
+
+            availableColors.forEach((color, idx) => {
+                const btn = document.createElement('button');
+                btn.innerText = color;
+                btn.onclick = () => selectColorVariant(color, btn);
+                
+                if (idx === 0) {
+                    btn.className = "color-btn py-1.5 px-4 rounded-lg border border-brand-pepilla bg-neutral-900 font-mono text-xs font-bold text-brand-pepilla shadow-[0_0_6px_#39ff14]";
+                } else {
+                    btn.className = "color-btn py-1.5 px-4 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-white";
+                }
+                colorsContainer.appendChild(btn);
+            });
+
+            updateProductGallery();
+            resetSizeButtons();
+
+            document.getElementById('productModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function selectColorVariant(colorName, element) {
+            selectedColor = colorName;
+            document.querySelectorAll('.color-btn').forEach(btn => {
+                btn.className = "color-btn py-1.5 px-4 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-white";
+            });
+            element.className = "color-btn py-1.5 px-4 rounded-lg border border-brand-pepilla bg-neutral-900 font-mono text-xs font-bold text-brand-pepilla shadow-[0_0_6px_#39ff14]";
+            updateProductGallery();
+        }
+
+        function updateProductGallery() {
+            const p = productsDatabase[currentProductIdx];
+            const currentImages = p.colors[selectedColor];
+
+            document.getElementById('thumb0').src = currentImages[0];
+            document.getElementById('thumb1').src = currentImages[1];
+            document.getElementById('thumb2').src = currentImages[2];
+
+            changeModalImg(0);
+        }
+
+        function changeModalImg(imgIdx) {
+            const p = productsDatabase[currentProductIdx];
+            const currentImages = p.colors[selectedColor];
+            const mainImg = document.getElementById('modalMainImg');
+            const thumbs = document.querySelectorAll('.modal-thumb');
+
+            mainImg.style.opacity = 0;
+            setTimeout(() => {
+                mainImg.src = currentImages[imgIdx];
+                mainImg.style.opacity = 1;
+            }, 100);
+
+            thumbs.forEach((thumb, idx) => {
+                if (idx === imgIdx) {
+                    thumb.className = "modal-thumb border border-brand-hardware rounded-lg overflow-hidden aspect-[3/4] p-0.5 bg-neutral-900";
+                    thumb.style.opacity = "1";
+                } else {
+                    thumb.className = "modal-thumb border border-neutral-800 rounded-lg overflow-hidden aspect-[3/4] p-0.5 bg-neutral-900";
+                    thumb.style.opacity = "0.5";
+                }
+            });
+        }
+
+        function selectModalSize(size, element) {
+            selectedModalSize = size;
+            document.querySelectorAll('.modal-size-btn').forEach(btn => {
+                btn.className = "modal-size-btn py-2 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-center text-white";
+            });
+            element.className = "modal-size-btn py-2 rounded-lg border border-brand-pepilla bg-neutral-900 font-mono text-xs font-bold text-center text-brand-pepilla shadow-[0_0_6px_#39ff14]";
+        }
+
+        function resetSizeButtons() {
+            document.querySelectorAll('.modal-size-btn').forEach(btn => {
+                if (btn.innerText === "M") {
+                    btn.className = "modal-size-btn py-2 rounded-lg border border-brand-pepilla bg-neutral-900 font-mono text-xs font-bold text-center text-brand-pepilla shadow-[0_0_6px_#39ff14]";
+                } else {
+                    btn.className = "modal-size-btn py-2 rounded-lg border border-neutral-800 bg-neutral-900 font-mono text-xs font-bold text-center text-white";
+                }
+            });
+        }
+
+        function updateModalQty(val) {
+            modalQuantity += val;
+            if (modalQuantity < 1) modalQuantity = 1;
+            document.getElementById('modalQtyDisplay').innerText = modalQuantity;
+        }
+
+        function sendModalOrder() {
+            const p = productsDatabase[currentProductIdx];
+            const baseNumber = "50254903915";
+            const total = modalQuantity * p.price;
+            const message = `¡Qué tal Pepitoria Estudio! Me interesa ordenar una playera de la tienda.%0A%0A*Detalles de mi Pedido:*%0A• Producto: Playera "${p.title}"%0A• Color: ${selectedColor}%0A• Medida: Talla ${selectedModalSize}%0A• Cantidad: ${modalQuantity} unidad(es)%0A• Total estimado: Q${total.toFixed(2)}%0A%0APorfa coordinemos la entrega en Guatemala.`;
+            
+            window.open(`https://wa.me/${baseNumber}?text=${message}`, '_blank');
+        }
+
+        // LÓGICA DEL AGENTE IA DE PEPITORIA
+        let selectedAiSize = "M"; 
+        let aiChatOpen = false;
+
+        function toggleAiChat() {
+            const windowChat = document.getElementById('ai-chat-window');
+            windowChat.classList.toggle('hidden');
+            if (!windowChat.classList.contains('hidden')) {
+                const container = document.getElementById('chat-messages-container');
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function handleChatKey(event) {
+            if (event.key === 'Enter') {
+                sendUserMessage();
+            }
+        }
+
+        function handleUserMessageSubmit() {
+            sendUserMessage();
+        }
+
+        function sendUserMessage() {
+            const input = document.getElementById('chat-user-input');
+            const query = input.value.trim();
+            if (!query) return;
+
+            appendMessage("TÚ", query, "user");
+            input.value = "";
+
+            setTimeout(() => {
+                processAiResponse(query.toLowerCase());
+            }, 400);
+        }
+
+        function triggerQuickResponse(moduleKey) {
+        let userLabel = "";
+        if (moduleKey === 'anuncios') userLabel = "Información de Anuncios Publicitarios";
+        if (moduleKey === 'diseno') userLabel = "Información de Diseño Gráfico y Branding";
+        if (moduleKey === 'web') userLabel = "Información de Páginas Web";
+        if (moduleKey === 'tienda') userLabel = "Comprar Playeras Drop 01";
+
+        appendMessage("TÚ", userLabel, "user");
+    
+        setTimeout(() => {
+        processAiResponse(moduleKey);
+         }, 400);
+        }
+
+        function appendMessage(sender, text, type) {
+            const container = document.getElementById('chat-messages-container');
+            const msgDiv = document.createElement('div');
+            
+            if (type === 'user') {
+                msgDiv.className = "flex flex-col items-end max-w-[85%] ml-auto";
+                msgDiv.innerHTML = `
+                    <span class="font-mono text-[9px] text-gray-500 mb-1">// ${sender}</span>
+                    <div class="bg-brand-pepilla text-black p-3 rounded-xl rounded-tr-none font-medium shadow-md">${text}</div>
+                `;
+            } else {
+                msgDiv.className = "flex flex-col items-start max-w-[85%]";
+                msgDiv.innerHTML = `
+                    <span class="font-mono text-[9px] text-brand-hardware mb-1">// ${sender}</span>
+                    <div class="bg-neutral-900 border border-neutral-800 p-3 rounded-xl rounded-tl-none text-gray-300 shadow-md">${text}</div>
+                `;
+            }
+
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function processAiResponse(input) {
+            let reply = "";
+            const baseWhatsApp = "https://wa.me/50254903915";
+
+            // MÓDULO 1: ANUNCIOS Y DISEÑO GRÁFICO (DIGITAL E IMPRESO)
+            if (input.includes('anuncio') || input.includes('video') || input.includes('tele') || input.includes('spot') || input.includes('presentac') || input === 'anuncios') {
+                reply = `⚡ *Anuncios Publicitarios de Alto Impacto:*<br>
+                Producimos piezas audiovisuales optimizadas para capturar la atención inmediata de tus clientes potenciales. Trabajamos formatos adaptados para:<br>
+                • **Redes Sociales:** Reels, TikToks y Ads de alta conversión.<br>
+                • **Televisión:** Spots comerciales con calidad de transmisión y cinematográfica.<br>
+                • **Presentaciones Corporativas:** Videos institucionales de alto nivel para proyectar tu empresa de forma profesional.<br><br>
+                ¿Tienes en mente un proyecto en video?<br>
+                <a href="${baseWhatsApp}?text=Hola! Quiero cotizar un anuncio publicitario en video." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ COTIZAR SPOT COMERCIAL</a>`;
+            } 
+            else if (input.includes('diseño') || input.includes('grafico') || input === 'diseno' || input.includes('logo') || input.includes('flyer') || input.includes('post') || input.includes('valla') || input.includes('mupi') || input.includes('volante') || input.includes('trifoliar') || input.includes('imagen')) {
+                reply = `🎨 *Dirección de Arte y Diseño Gráfico Radical:*<br>
+                Cubrimos absolutamente toda la infraestructura visual que tu negocio necesita, tanto en entornos digitales como físicos:<br>
+                • **Diseño Digital:** Creación de logotipos desde cero, manuales de identidad, cambio de imagen corporativa (*rebranding*) y diseño de posts/flyers para redes sociales.<br>
+                • **Publicidad Exterior e Impresos:** Artes a gran escala para vallas publicitarias, mupies urbanos, volantes, trifoliares y papelería comercial.<br><br>
+                ¿Necesitas renovar la imagen de tu marca o diseñar material publicitario?<br>
+                <a href="${baseWhatsApp}?text=Hola! Necesito cotizar un servicio de diseño gráfico / branding." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ INICIAR PROYECTO DE DISEÑO</a>`;
+            }
+            
+            // MÓDULO 2: INGENIERÍA WEB Y CORREOS CORPORATIVOS
+            else if (input.includes('web') || input.includes('landing') || input.includes('pagina') || input.includes('precio') || input === 'web') {
+                reply = `🚀 *Protocolo Web Frontend:*<br>
+                Una **Landing Page** le otorga la formalidad, seriedad y respaldo digital que cualquier negocio necesita en internet para generar confianza y cerrar ventas reales.<br><br>
+                💻 *Nuestra Solución Base (Q1,500.00):*<br>
+                Nuestra propuesta más accesible arranca en **Q1,500.00** y es un paquete **Listo para Operar**. Ya te incluye:<br>
+                • Programación limpia en código nativo de alta velocidad.<br>
+                • **Dominio propio (.com)** por 1 año completo.<br>
+                • **Hosting de alta velocidad** por 1 año completo.<br><br>
+                *Nota:* El precio es *desde Q1,500.00* porque va escalando y adaptándose de forma justa según los requerimientos o módulos extra que vaya necesitando tu negocio.<br><br>
+                📧 *¿Solo necesitas correos por el momento?*<br>
+                Si no estás listo para la página web completa, te ofrecemos únicamente el servicio de **Dominio Propio con Cuentas de Correo Electrónico Corporativas** bajo una cuota fija anual para formalizar tu comunicación de una vez.<br><br>
+                ¿Hablamos de tu proyecto web o de tus correos?<br>
+                <a href="${baseWhatsApp}?text=Hola! Quiero cotizar el paquete de Landing Page de Q1500 o el servicio de correos." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ SOLICITAR INFRAESTRUCTURA WEB</a>`;
+            } 
+            
+            // MÓDULO 3: LA TIENDA Y LOGÍSTICA
+            else if (input.includes('tienda') || input.includes('playera') || input.includes('comprar') || input.includes('luck') || input.includes('envio') || input.includes('entrega') || input === 'tienda') {
+                reply = `🛍️ *Catálogo de Ropa Urbana - DROP 01:*<br>
+                Nuestra línea de merch oficial está activa, liderada por la playera icónica **"FET'S LUCK"** a solo **Q175.00** (Frente minimalista limpio, espalda con diseño tipográfico nítido en algodón pesado premium).<br><br>
+                📦 *Logística y Entregas:*<br>
+                Al seleccionar el color (Blanco/Negro) y tu talla (S, M, L, XL) dentro del catálogo visual, presionas el botón de pedido y coordinamos de una vez la entrega. Hacemos envíos rápidos y seguros a cualquier zona de **Guatemala**.<br><br>
+                ¡Dale una mirada al catálogo en la sección de la Tienda y selecciona tu favorita!`;
+            } 
+            
+            // MÓDULO 4: LABORATORIO DE HUMOR (VIRALIZACIÓN Y COLABORACIONES)
+            else if (input.includes('humor') || input.includes('viral') || input.includes('colabora') || input.includes('redes') || input.includes('tiktok') || input.includes('instagram')) {
+                reply = `🤖 *Laboratorio de Humor e IA:*<br>
+                Nuestra especialidad es romper el internet. Creamos contenidos disruptivos y surrealistas que se han ido **viralizando con millones de impactos orgánicos** en TikTok, Instagram y Facebook.<br><br>
+                📢 *Zona de Colaboraciones de Marca:*<br>
+                Si quieres potenciar tu negocio o producto con nuestra audiencia masiva, **estamos abiertos a realizar colaboraciones creativas dentro de nuestras redes sociales oficiales**. Inyectamos humor irreverente e Inteligencia Artificial para que tu marca se vuelva memorable.<br><br>
+                ¿Quieres que hablemos de una colaboración viral?<br>
+                <a href="${baseWhatsApp}?text=Hola! Me interesa coordinar una colaboración publicitaria en las redes de Pepitoria." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ ESTABLECER ALIANZA VIRAL</a>`;
+            } 
+            
+            // COMANDOS DE SALUDO O FALLBACK
+            else if (input.includes('hola') || input.includes('saludos') || input.includes('buenas') || input.includes('que tal')) {
+                reply = `¡Protocolo de comunicación establecido! Bienvenido al centro de atención de **Pepitoria Estudio**.<br><br>
+                Pregúntame libremente sobre lo que necesites:<br>
+                • ⚡ **Anuncios en video** para TV o Redes.<br>
+                • 🎨 **Diseño gráfico, logos o vallas publicitarias**.<br>
+                • 🚀 **Páginas web (Q1500 todo incl.)** o solo **Correos Corporativos** anuales.<br>
+                • 🤖 **Colaboraciones virales** en nuestro laboratorio de humor.<br>
+                • 🛍️ Cómo pedir tus playeras en la **Tienda**.`;
+            } 
+            else {
+                reply = `Comando o consulta no registrada en el Core. Para darte una cotización precisa o resolver dudas específicas sobre tu proyecto de diseño, hablemos directamente por nuestra línea de atención en Guatemala.<br><br>
+                <a href="${baseWhatsApp}?text=Hola Gabriel! Necesito hacer una consulta directa sobre un servicio de la agencia." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ ABRIR ENLACE DE WHATSAPP DIRECTO</a>`;
+            }
+
+            appendMessage("AGENTE_IA_PEPITORIA", reply, "agent");
+        }
 
         // CONTROL DE MENÚ MÓVIL DESPLEGABLE
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -719,7 +1163,7 @@
             
             if (isHidden) {
                 mobileMenu.classList.remove('hidden');
-                mobileMenu.offsetHeight; // Forzar reflujo de renderizado
+                mobileMenu.offsetHeight;
                 mobileMenu.classList.remove('-translate-y-4', 'opacity-0');
                 mobileMenu.classList.add('translate-y-0', 'opacity-100');
                 if (mobileMenuIcon) mobileMenuIcon.className = 'fas fa-times text-xl text-brand-pepilla';
