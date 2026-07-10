@@ -704,11 +704,25 @@
         </div>
     </footer>
 
-    <!-- WIDGET DE AGENTE IA FLOTANTE (BRUTALISTA NEÓN) -->
-    <div id="ai-agent-widget" class="fixed bottom-6 right-6 z-50 font-roboto">
+    <!-- WIDGET DE AGENTE IA FLOTANTE (BRUTALISTA NEÓN) CON NUBE DE SALUDO -->
+    <div id="ai-agent-widget" class="fixed bottom-6 right-6 z-50 font-roboto flex flex-col items-end">
         
-        <button onclick="toggleAiChat()" id="btn-open-chat" class="w-14 h-14 bg-brand-black text-brand-pepilla rounded-full border-2 border-brand-pepilla flex items-center justify-center text-xl shadow-[0_0_15px_rgba(57,255,20,0.4)] hover:bg-brand-pepilla hover:text-black hover:scale-110 active:scale-95 transition-all duration-300">
+        <!-- Nube de Texto (Tooltip) de Saludo Automatizado -->
+        <div id="ai-saludo-bubble" class="hidden opacity-0 transform translate-y-2 transition-all duration-500 ease-out mb-3 bg-brand-dark-gray border-2 border-black p-3.5 rounded-2xl rounded-br-none shadow-[4px_4px_0px_#111] max-w-[280px] text-left relative">
+            <span class="font-mono text-[10px] text-brand-hardware block mb-1.5 uppercase tracking-wider font-bold">// SYS_MSG: Hello!</span>
+            <p class="text-white text-xs leading-relaxed">
+                ¡Qué tal! Bienvenido. Soy el asistente IA. <strong class="text-brand-pepilla">Haz clic aquí abajo</strong> para resolver dudas de precios, diseño o la tienda de inmediato.
+            </p>
+            <!-- Triangulito de la nube -->
+            <div class="absolute -bottom-2 right-5 w-0 h-0 border-l-[8px] border-l-transparent border-t-[10px] border-t-brand-dark-gray border-r-[8px] border-r-transparent"></div>
+            <!-- Borde del triangulito (simulación brutalista) -->
+            <div class="absolute -bottom-[11px] right-[19px] w-0 h-0 border-l-[9px] border-l-transparent border-t-[11px] border-t-black border-r-[9px] border-r-transparent -z-10"></div>
+        </div>
+
+        <button onclick="toggleAiChat()" id="btn-open-chat" class="w-14 h-14 bg-brand-black text-brand-pepilla rounded-full border-2 border-brand-pepilla flex items-center justify-center text-xl shadow-[0_0_15px_rgba(57,255,20,0.4)] hover:bg-brand-pepilla hover:text-black hover:scale-110 active:scale-95 transition-all duration-300 relative group">
             <i class="fas fa-robot"></i>
+            <!-- Indicador de notificación neón -->
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-brand-hardware rounded-full border-2 border-black animate-pulse group-hover:animate-none"></span>
         </button>
 
         <div id="ai-chat-window" class="hidden absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-96 h-[480px] bg-brand-dark-gray border-4 border-black rounded-2xl flex flex-col shadow-2xl overflow-hidden text-white">
@@ -729,10 +743,11 @@
                     <div class="bg-neutral-900 border border-neutral-800 p-3 rounded-xl rounded-tl-none text-gray-300 shadow-md">
                         ¡Qué tal! Bienvenido al Core de Pepitoria Estudio. Soy tu asistente de Inteligencia Artificial. ¿En qué módulo del sistema estás interesado hoy? 
                         <div class="mt-3 flex flex-wrap gap-2 font-mono text-[10px]">
-                        <button onclick="triggerQuickResponse('anuncios')" class="bg-black border border-neutral-700 hover:border-brand-hardware text-gray-400 hover:text-brand-hardware px-2.5 py-1 rounded transition-colors">1. Anuncios Publicitarios</button>
-                        <button onclick="triggerQuickResponse('diseno')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">2. Diseño Gráfico & Branding</button>
-                        <button onclick="triggerQuickResponse('web')" class="bg-black border border-neutral-700 hover:border-white text-gray-400 hover:text-white px-2.5 py-1 rounded transition-colors">3. Páginas Web / Landings</button>
-                        <button onclick="triggerQuickResponse('tienda')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">4. Comprar Playeras</button>                    
+                            <button onclick="triggerQuickResponse('anuncios')" class="bg-black border border-neutral-700 hover:border-brand-hardware text-gray-400 hover:text-brand-hardware px-2.5 py-1 rounded transition-colors">1. Anuncios Publicitarios</button>
+                            <button onclick="triggerQuickResponse('diseno')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">2. Diseño Gráfico & Branding</button>
+                            <button onclick="triggerQuickResponse('web')" class="bg-black border border-neutral-700 hover:border-white text-gray-400 hover:text-white px-2.5 py-1 rounded transition-colors">3. Páginas Web / Landings</button>
+                            <button onclick="triggerQuickResponse('tienda')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">4. Comprar Playeras</button>                    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -745,8 +760,16 @@
         </div>
     </div>
 
+            <div class="p-3 bg-black border-t-2 border-black flex items-center space-x-2">
+                <input type="text" id="chat-user-input" onkeypress="handleChatKey(event)" placeholder="Escribe un comando o pregunta..." class="flex-1 bg-brand-dark-gray border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-brand-pepilla transition-colors">
+                <button onclick="handleUserMessageSubmit()" class="bg-neutral-900 border border-neutral-800 text-brand-pepilla text-xs px-3 py-2 rounded-lg font-mono hover:bg-brand-pepilla hover:text-black transition-colors">SEND</button>
+            </div>
 
-    <!-- INTERACTIVIDAD JAVASCRIPT -->
+        </div>
+    </div>
+
+
+    <!-- INTERACTIVIDAD JAVASCRIPT: NUBE CON DESAPARICIÓN AUTOMÁTICA Y MENSAJE DE COTIZACIÓN -->
     <script>
         // PORTAFOLIO AUDIOVISUAL
         const portfolioData = {
@@ -838,7 +861,7 @@
                 price: 125,
                 desc: "Descripción de tu segundo diseño conceptual exclusivo de Pepitoria Drop 01.",
                 colors: {
-                    "Negro": ["images/tienda/playeras/wifereal.jpeg", "images/tienda/playeras/wifebback.png", "images/tienda/playeras/blackfront.png"],
+                    "Negro": ["images/tienda/playeras/wifereal.jpeg", "images/tienda/playeras/wifeback.png", "images/tienda/playeras/blackfront.png"],
                     "Blanco": ["images/tienda/playeras/wwifereal.jpeg", "images/tienda/playeras/wifewback.png", "images/tienda/playeras/whitefront.png"]
                 }
             },
@@ -1003,16 +1026,71 @@
             window.open(`https://wa.me/${baseNumber}?text=${message}`, '_blank');
         }
 
-        // LÓGICA DEL AGENTE IA DE PEPITORIA
-        let selectedAiSize = "M"; 
+        // ==========================================
+        // LÓGICA DEL AGENTE IA Y NUBE DE SALUDO (CON TIMER AUTOMÁTICO)
+        // ==========================================
         let aiChatOpen = false;
+        let saludoBubbleTriggered = false;
+
+        window.addEventListener('load', () => {
+            const bubble = document.getElementById('ai-saludo-bubble');
+            if (bubble && !aiChatOpen) {
+                // Cambiar dinámicamente el mensaje para quitar precios o referencias de tienda
+                const pText = bubble.querySelector('p');
+                if (pText) {
+                    pText.innerHTML = `¡Qué tal! Bienvenido. Soy el asistente IA. <strong class="text-brand-pepilla">Hacé clic aquí abajo</strong> si deseás realizar una consulta o solicitar una cotización personalizada para tu marca.`;
+                }
+
+                // 1. Mostrar la nube a los 2.5 segundos
+                setTimeout(() => {
+                    if (!aiChatOpen && !saludoBubbleTriggered) {
+                        bubble.classList.remove('hidden');
+                        setTimeout(() => {
+                            bubble.classList.remove('opacity-0', 'translate-y-2');
+                            bubble.classList.add('opacity-100', 'translate-y-0');
+                        }, 50);
+
+                        // 2. Desvanecer y ocultar la nube automáticamente después de 7 segundos de estar abierta
+                        setTimeout(() => {
+                            if (!aiChatOpen) {
+                                bubble.classList.remove('opacity-100', 'translate-y-0');
+                                bubble.classList.add('opacity-0', 'translate-y-2');
+                                setTimeout(() => {
+                                    bubble.classList.add('hidden');
+                                }, 500); // Espera que termine la transición css
+                            }
+                        }, 7000);
+                    }
+                }, 2500);
+            }
+        });
 
         function toggleAiChat() {
             const windowChat = document.getElementById('ai-chat-window');
-            windowChat.classList.toggle('hidden');
-            if (!windowChat.classList.contains('hidden')) {
+            const bubble = document.getElementById('ai-saludo-bubble');
+            
+            if (!windowChat) return;
+            const isClosing = !windowChat.classList.contains('hidden');
+            
+            if (isClosing) {
+                windowChat.classList.add('hidden');
+                aiChatOpen = false;
+            } else {
+                windowChat.classList.remove('hidden');
+                aiChatOpen = true;
+                saludoBubbleTriggered = true;
+
+                if (bubble) {
+                    bubble.classList.add('hidden', 'opacity-0');
+                }
+
                 const container = document.getElementById('chat-messages-container');
-                container.scrollTop = container.scrollHeight;
+                if (container) container.scrollTop = container.scrollHeight;
+                
+                setTimeout(() => {
+                    const inputEl = document.getElementById('chat-user-input');
+                    if (inputEl) inputEl.focus();
+                }, 100);
             }
         }
 
@@ -1040,17 +1118,17 @@
         }
 
         function triggerQuickResponse(moduleKey) {
-        let userLabel = "";
-        if (moduleKey === 'anuncios') userLabel = "Información de Anuncios Publicitarios";
-        if (moduleKey === 'diseno') userLabel = "Información de Diseño Gráfico y Branding";
-        if (moduleKey === 'web') userLabel = "Información de Páginas Web";
-        if (moduleKey === 'tienda') userLabel = "Comprar Playeras Drop 01";
+            let userLabel = "";
+            if (moduleKey === 'anuncios') userLabel = "Información de Anuncios Publicitarios";
+            if (moduleKey === 'diseno') userLabel = "Información de Diseño Gráfico y Branding";
+            if (moduleKey === 'web') userLabel = "Información de Páginas Web";
+            if (moduleKey === 'tienda') userLabel = "Consultar Catálogo de Ropa";
 
-        appendMessage("TÚ", userLabel, "user");
-    
-        setTimeout(() => {
-        processAiResponse(moduleKey);
-         }, 400);
+            appendMessage("TÚ", userLabel, "user");
+        
+            setTimeout(() => {
+                processAiResponse(moduleKey);
+            }, 400);
         }
 
         function appendMessage(sender, text, type) {
@@ -1079,73 +1157,26 @@
             let reply = "";
             const baseWhatsApp = "https://wa.me/50254903915";
 
-            // MÓDULO 1: ANUNCIOS Y DISEÑO GRÁFICO (DIGITAL E IMPRESO)
             if (input.includes('anuncio') || input.includes('video') || input.includes('tele') || input.includes('spot') || input.includes('presentac') || input === 'anuncios') {
-                reply = `⚡ *Anuncios Publicitarios de Alto Impacto:*<br>
-                Producimos piezas audiovisuales optimizadas para capturar la atención inmediata de tus clientes potenciales. Trabajamos formatos adaptados para:<br>
-                • **Redes Sociales:** Reels, TikToks y Ads de alta conversión.<br>
-                • **Televisión:** Spots comerciales con calidad de transmisión y cinematográfica.<br>
-                • **Presentaciones Corporativas:** Videos institucionales de alto nivel para proyectar tu empresa de forma profesional.<br><br>
-                ¿Tienes en mente un proyecto en video?<br>
-                <a href="${baseWhatsApp}?text=Hola! Quiero cotizar un anuncio publicitario en video." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ COTIZAR SPOT COMERCIAL</a>`;
+                reply = `⚡ *Anuncios Publicitarios de Alto Impacto:*<br>Producimos piezas audiovisuales optimizadas para capturar la atención inmediata según las dimensiones y canales requeridos por tu negocio.<br><br><a href="${baseWhatsApp}?text=Hola! Quiero cotizar un anuncio en video personalizado." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ SOLICITAR PROPUESTA AUDIOVISUAL</a>`;
             } 
-            else if (input.includes('diseño') || input.includes('grafico') || input === 'diseno' || input.includes('logo') || input.includes('flyer') || input.includes('post') || input.includes('valla') || input.includes('mupi') || input.includes('volante') || input.includes('trifoliar') || input.includes('imagen')) {
-                reply = `🎨 *Dirección de Arte y Diseño Gráfico Radical:*<br>
-                Cubrimos absolutamente toda la infraestructura visual que tu negocio necesita, tanto en entornos digitales como físicos:<br>
-                • **Diseño Digital:** Creación de logotipos desde cero, manuales de identidad, cambio de imagen corporativa (*rebranding*) y diseño de posts/flyers para redes sociales.<br>
-                • **Publicidad Exterior e Impresos:** Artes a gran escala para vallas publicitarias, mupies urbanos, volantes, trifoliares y papelería comercial.<br><br>
-                ¿Necesitas renovar la imagen de tu marca o diseñar material publicitario?<br>
-                <a href="${baseWhatsApp}?text=Hola! Necesito cotizar un servicio de diseño gráfico / branding." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ INICIAR PROYECTO DE DISEÑO</a>`;
+            else if (input.includes('diseño') || input.includes('grafico') || input === 'diseno' || input.includes('logo') || input.includes('flyer') || input.includes('valla')) {
+                reply = `🎨 *Dirección de Arte y Diseño Gráfico Radical:*<br>Evaluamos tus requerimientos específicos de marca, logotipos, papelería corporativa o formatos de vía pública para estructurar un presupuesto exacto.<br><br><a href="${baseWhatsApp}?text=Hola! Necesito cotizar un servicio de diseño gráfico adaptado." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ INICIAR SESIÓN DE DISEÑO</a>`;
             }
-            
-            // MÓDULO 2: INGENIERÍA WEB Y CORREOS CORPORATIVOS
-            else if (input.includes('web') || input.includes('landing') || input.includes('pagina') || input.includes('precio') || input === 'web') {
-                reply = `🚀 *Protocolo Web Frontend:*<br>
-                Una **Landing Page** le otorga la formalidad, seriedad y respaldo digital que cualquier negocio necesita en internet para generar confianza y cerrar ventas reales.<br><br>
-                💻 *Nuestra Solución Base (Q1,500.00):*<br>
-                Nuestra propuesta más accesible arranca en **Q1,500.00** y es un paquete **Listo para Operar**. Ya te incluye:<br>
-                • Programación limpia en código nativo de alta velocidad.<br>
-                • **Dominio propio (.com)** por 1 año completo.<br>
-                • **Hosting de alta velocidad** por 1 año completo.<br><br>
-                *Nota:* El precio es *desde Q1,500.00* porque va escalando y adaptándose de forma justa según los requerimientos o módulos extra que vaya necesitando tu negocio.<br><br>
-                📧 *¿Solo necesitas correos por el momento?*<br>
-                Si no estás listo para la página web completa, te ofrecemos únicamente el servicio de **Dominio Propio con Cuentas de Correo Electrónico Corporativas** bajo una cuota fija anual para formalizar tu comunicación de una vez.<br><br>
-                ¿Hablamos de tu proyecto web o de tus correos?<br>
-                <a href="${baseWhatsApp}?text=Hola! Quiero cotizar el paquete de Landing Page de Q1500 o el servicio de correos." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ SOLICITAR INFRAESTRUCTURA WEB</a>`;
+            else if (input.includes('web') || input.includes('landing') || input.includes('pagina') || input === 'web') {
+                reply = `🚀 *Protocolo Web Frontend:*<br>Diseñamos y programamos landing pages en código nativo de alta velocidad. Cuéntanos qué módulos, formularios o integraciones necesitas para definir la estructura de la web.<br><br><a href="${baseWhatsApp}?text=Hola! Quiero cotizar el desarrollo de una Landing Page." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ PLANIFICAR PROYECTO WEB</a>`;
             } 
-            
-            // MÓDULO 3: LA TIENDA Y LOGÍSTICA
-            else if (input.includes('tienda') || input.includes('playera') || input.includes('comprar') || input.includes('luck') || input.includes('envio') || input.includes('entrega') || input === 'tienda') {
-                reply = `🛍️ *Catálogo de Ropa Urbana - DROP 01:*<br>
-                Nuestra línea de merch oficial está activa, liderada por la playera icónica **"FET'S LUCK"** a solo **Q125.00** (Frente minimalista limpio, espalda con diseño tipográfico nítido en algodón pesado premium).<br><br>
-                📦 *Logística y Entregas:*<br>
-                Al seleccionar el color (Blanco/Negro) y tu talla (S, M, L, XL) dentro del catálogo visual, presionas el botón de pedido y coordinamos de una vez la entrega. Hacemos envíos rápidos y seguros a cualquier zona de **Guatemala**.<br><br>
-                ¡Dale una mirada al catálogo en la sección de la Tienda y selecciona tu favorita!`;
+            else if (input.includes('tienda') || input.includes('playera') || input.includes('luck') || input === 'tienda') {
+                reply = `🛍 *Línea Oficial de Merch:*<br>Si deseas adquirir alguna playera del catálogo Drop 01 o cotizar la producción de merch personalizada para tu propia empresa, comunícate con nosotros para coordinar tallas y distribución.`;
             } 
-            
-            // MÓDULO 4: LABORATORIO DE HUMOR (VIRALIZACIÓN Y COLABORACIONES)
-            else if (input.includes('humor') || input.includes('viral') || input.includes('colabora') || input.includes('redes') || input.includes('tiktok') || input.includes('instagram')) {
-                reply = `🤖 *Laboratorio de Humor e IA:*<br>
-                Nuestra especialidad es romper el internet. Creamos contenidos disruptivos y surrealistas que se han ido **viralizando con millones de impactos orgánicos** en TikTok, Instagram y Facebook.<br><br>
-                📢 *Zona de Colaboraciones de Marca:*<br>
-                Si quieres potenciar tu negocio o producto con nuestra audiencia masiva, **estamos abiertos a realizar colaboraciones creativas dentro de nuestras redes sociales oficiales**. Inyectamos humor irreverente e Inteligencia Artificial para que tu marca se vuelva memorable.<br><br>
-                ¿Quieres que hablemos de una colaboración viral?<br>
-                <a href="${baseWhatsApp}?text=Hola! Me interesa coordinar una colaboración publicitaria en las redes de Pepitoria." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ ESTABLECER ALIANZA VIRAL</a>`;
+            else if (input.includes('humor') || input.includes('viral') || input.includes('colabora')) {
+                reply = `🤖 *Laboratorio de Humor e IA:*<br>Desarrollamos contenidos multimedia de alto impacto orgánico. Si deseas pautar o realizar una colaboración estratégica con tu marca dentro de nuestros canales, analicemos tu idea.<br><br><a href="${baseWhatsApp}?text=Hola! Me interesa una colaboración publicitaria." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ ANALIZAR COLABORACIÓN VIRAL</a>`;
             } 
-            
-            // COMANDOS DE SALUDO O FALLBACK
-            else if (input.includes('hola') || input.includes('saludos') || input.includes('buenas') || input.includes('que tal')) {
-                reply = `¡Protocolo de comunicación establecido! Bienvenido al centro de atención de **Pepitoria Estudio**.<br><br>
-                Pregúntame libremente sobre lo que necesites:<br>
-                • ⚡ **Anuncios en video** para TV o Redes.<br>
-                • 🎨 **Diseño gráfico, logos o vallas publicitarias**.<br>
-                • 🚀 **Páginas web (Q1500 todo incl.)** o solo **Correos Corporativos** anuales.<br>
-                • 🤖 **Colaboraciones virales** en nuestro laboratorio de humor.<br>
-                • 🛍️ Cómo pedir tus playeras en la **Tienda**.`;
+            else if (input.includes('hola') || input.includes('saludos') || input.includes('que tal')) {
+                reply = `¡Protocolo establecido! Bienvenido al canal automatizado. Consultame libremente tus dudas sobre proyectos audiovisuales, ingeniería web o identidades de marca para guiarte en tu cotización.`;
             } 
             else {
-                reply = `Comando o consulta no registrada en el Core. Para darte una cotización precisa o resolver dudas específicas sobre tu proyecto de diseño, hablemos directamente por nuestra línea de atención en Guatemala.<br><br>
-                <a href="${baseWhatsApp}?text=Hola Gabriel! Necesito hacer una consulta directa sobre un servicio de la agencia." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ ABRIR ENLACE DE WHATSAPP DIRECTO</a>`;
+                reply = `Entendido. Para darte un presupuesto exacto basado en las necesidades de tu marca, lo ideal es que revisemos el alcance en una breve sesión directa por WhatsApp.<br><br><a href="${baseWhatsApp}?text=Hola Gabriel! Necesito una cotización personalizada para un proyecto." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ CONTACTAR DIRECTO VÍA WHATSAPP</a>`;
             }
 
             appendMessage("AGENTE_IA_PEPITORIA", reply, "agent");
