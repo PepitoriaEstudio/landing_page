@@ -704,14 +704,14 @@
         </div>
     </footer>
 
-    <!-- WIDGET DE AGENTE IA FLOTANTE (BRUTALISTA NEÓN) CON NUBE DE SALUDO -->
+    <!-- WIDGET DE AGENTE IA FLOTANTE (BRUTALISTA NEÓN) - SIN BARRAS DUPLICADAS -->
     <div id="ai-agent-widget" class="fixed bottom-6 right-6 z-50 font-roboto flex flex-col items-end">
         
         <!-- Nube de Texto (Tooltip) de Saludo Automatizado -->
         <div id="ai-saludo-bubble" class="hidden opacity-0 transform translate-y-2 transition-all duration-500 ease-out mb-3 bg-brand-dark-gray border-2 border-black p-3.5 rounded-2xl rounded-br-none shadow-[4px_4px_0px_#111] max-w-[280px] text-left relative">
             <span class="font-mono text-[10px] text-brand-hardware block mb-1.5 uppercase tracking-wider font-bold">// SYS_MSG: Hello!</span>
             <p class="text-white text-xs leading-relaxed">
-                ¡Qué tal! Bienvenido. Soy el asistente IA. <strong class="text-brand-pepilla">Haz clic aquí abajo</strong> para resolver dudas de precios, diseño o la tienda de inmediato.
+                ¡Qué tal! Bienvenido. Soy el asistente IA. <strong class="text-brand-pepilla">Hacé clic aquí abajo</strong> si deseás realizar una consulta o solicitar una cotización personalizada para tu marca.
             </p>
             <!-- Triangulito de la nube -->
             <div class="absolute -bottom-2 right-5 w-0 h-0 border-l-[8px] border-l-transparent border-t-[10px] border-t-brand-dark-gray border-r-[8px] border-r-transparent"></div>
@@ -719,13 +719,15 @@
             <div class="absolute -bottom-[11px] right-[19px] w-0 h-0 border-l-[9px] border-l-transparent border-t-[11px] border-t-black border-r-[9px] border-r-transparent -z-10"></div>
         </div>
 
+        <!-- Botón redondo del Robot -->
         <button onclick="toggleAiChat()" id="btn-open-chat" class="w-14 h-14 bg-brand-black text-brand-pepilla rounded-full border-2 border-brand-pepilla flex items-center justify-center text-xl shadow-[0_0_15px_rgba(57,255,20,0.4)] hover:bg-brand-pepilla hover:text-black hover:scale-110 active:scale-95 transition-all duration-300 relative group">
             <i class="fas fa-robot"></i>
             <!-- Indicador de notificación neón -->
             <span class="absolute -top-1 -right-1 w-4 h-4 bg-brand-hardware rounded-full border-2 border-black animate-pulse group-hover:animate-none"></span>
         </button>
 
-        <div id="ai-chat-window" class="hidden absolute bottom-20 right-0 w-[calc(100vw-2rem)] sm:w-96 h-[480px] bg-brand-dark-gray border-4 border-black rounded-2xl flex flex-col shadow-2xl overflow-hidden text-white">
+        <!-- Ventana del Chat (Flota limpiamente arriba del botón redondo) -->
+        <div id="ai-chat-window" class="hidden absolute bottom-24 right-0 w-[calc(100vw-2rem)] sm:w-96 h-[480px] bg-brand-dark-gray border-4 border-black rounded-2xl flex flex-col shadow-2xl overflow-hidden text-white">
             
             <div class="bg-black p-4 border-b-2 border-black flex justify-between items-center font-mono text-xs text-brand-pepilla">
                 <div class="flex items-center space-x-2">
@@ -746,20 +748,13 @@
                             <button onclick="triggerQuickResponse('anuncios')" class="bg-black border border-neutral-700 hover:border-brand-hardware text-gray-400 hover:text-brand-hardware px-2.5 py-1 rounded transition-colors">1. Anuncios Publicitarios</button>
                             <button onclick="triggerQuickResponse('diseno')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">2. Diseño Gráfico & Branding</button>
                             <button onclick="triggerQuickResponse('web')" class="bg-black border border-neutral-700 hover:border-white text-gray-400 hover:text-white px-2.5 py-1 rounded transition-colors">3. Páginas Web / Landings</button>
-                            <button onclick="triggerQuickResponse('tienda')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">4. Comprar Playeras</button>                    
+                            <button onclick="triggerQuickResponse('tienda')" class="bg-black border border-neutral-700 hover:border-brand-pepilla text-gray-400 hover:text-brand-pepilla px-2.5 py-1 rounded transition-colors">4. Consultar Catálogo de Ropa</button>                    
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="p-3 bg-black border-t-2 border-black flex items-center space-x-2">
-                <input type="text" id="chat-user-input" onkeypress="handleChatKey(event)" placeholder="Escribe un comando o pregunta..." class="flex-1 bg-brand-dark-gray border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-brand-pepilla transition-colors">
-                <button onclick="handleUserMessageSubmit()" class="bg-neutral-900 border border-neutral-800 text-brand-pepilla text-xs px-3 py-2 rounded-lg font-mono hover:bg-brand-pepilla hover:text-black transition-colors">SEND</button>
-            </div>
-
-        </div>
-    </div>
-
+            <!-- Única Barra de entrada de texto (Dentro de la ventana flotante) -->
             <div class="p-3 bg-black border-t-2 border-black flex items-center space-x-2">
                 <input type="text" id="chat-user-input" onkeypress="handleChatKey(event)" placeholder="Escribe un comando o pregunta..." class="flex-1 bg-brand-dark-gray border border-neutral-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-600 focus:outline-none focus:border-brand-pepilla transition-colors">
                 <button onclick="handleUserMessageSubmit()" class="bg-neutral-900 border border-neutral-800 text-brand-pepilla text-xs px-3 py-2 rounded-lg font-mono hover:bg-brand-pepilla hover:text-black transition-colors">SEND</button>
@@ -1158,25 +1153,57 @@
             const baseWhatsApp = "https://wa.me/50254903915";
 
             if (input.includes('anuncio') || input.includes('video') || input.includes('tele') || input.includes('spot') || input.includes('presentac') || input === 'anuncios') {
-                reply = `⚡ *Anuncios Publicitarios de Alto Impacto:*<br>Producimos piezas audiovisuales optimizadas para capturar la atención inmediata según las dimensiones y canales requeridos por tu negocio.<br><br><a href="${baseWhatsApp}?text=Hola! Quiero cotizar un anuncio en video personalizado." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ SOLICITAR PROPUESTA AUDIOVISUAL</a>`;
+                reply = `⚡ *Anuncios Audiovisuales de Alto Impacto:*<br><br>
+                Producimos piezas de video optimizadas con técnicas de retención inmediata y cinematografía digital para capturar la atención de tu cliente ideal de forma orgánica o pagada. Trabajamos bajo los siguientes esquemas estructurales:<br><br>
+                • **Campaña para Redes Sociales:** Reels, TikToks y Video Ads con ganchos (*hooks*) agresivos diseñados específicamente para romper el scroll y elevar las conversiones de tu negocio.<br>
+                • **Spots Comerciales de TV:** Producción audiovisual de alta fidelidad, con corrección de color profesional y diseño sonoro listos para pauta en cadenas de transmisión tradicional.<br>
+                • **Presentaciones Corporativas:** Videos institucionales y técnicos dinámicos ideales para proyectar la infraestructura, legados y seriedad de tu empresa frente a inversionistas o juntas directivas.<br><br>
+                Cada proyecto audiovisual requiere un desglose técnico único de preproducción, guionismo y edición avanzada. Hablemos directamente para estructurar tu idea:<br><br>
+                <a href="${baseWhatsApp}?text=Hola! Quiero planificar y cotizar un anuncio publicitario en video con ustedes." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ SOLICITAR PROPUESTA AUDIOVISUAL</a>`;
             } 
-            else if (input.includes('diseño') || input.includes('grafico') || input === 'diseno' || input.includes('logo') || input.includes('flyer') || input.includes('valla')) {
-                reply = `🎨 *Dirección de Arte y Diseño Gráfico Radical:*<br>Evaluamos tus requerimientos específicos de marca, logotipos, papelería corporativa o formatos de vía pública para estructurar un presupuesto exacto.<br><br><a href="${baseWhatsApp}?text=Hola! Necesito cotizar un servicio de diseño gráfico adaptado." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ INICIAR SESIÓN DE DISEÑO</a>`;
+            else if (input.includes('diseño') || input.includes('grafico') || input === 'diseno' || input.includes('logo') || input.includes('flyer') || input.includes('valla') || input.includes('mupi') || input.includes('identidad')) {
+                reply = `🎨 *Dirección de Arte y Diseño Gráfico Radical:*<br><br>
+                Cubrimos absolutamente toda la infraestructura e identidad visual que requiere tu empresa para destacar en entornos físicos y plataformas digitales, asegurando coherencia gráfica en cada canal:<br><br>
+                • **Branding & Identidad:** Creación de logotipos desde cero, manuales de normas de marca, rediseño de identidades corporativas (*rebranding*) y vectorización de alta precisión.<br>
+                • **Publicidad de Vía Pública:** Diseño técnico para formatos a gran escala como vallas espectaculares, mupies urbanos, tótems y rotulación vehicular publicitaria.<br>
+                • **Material Comercial:** Flyers promocionales de alto impacto, menús impresos/digitales, trifoliares informativos y papelería comercial de primera línea.<br><br>
+                Debido a que el alcance varía según las piezas y los formatos de salida física o digital, analizamos tus requerimientos en una sesión directa para darte un presupuesto exacto:<br><br>
+                <a href="${baseWhatsApp}?text=Hola! Necesito cotizar un servicio de diseño gráfico / branding a la medida para mi negocio." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ INICIAR SESIÓN DE DISEÑO</a>`;
             }
-            else if (input.includes('web') || input.includes('landing') || input.includes('pagina') || input === 'web') {
-                reply = `🚀 *Protocolo Web Frontend:*<br>Diseñamos y programamos landing pages en código nativo de alta velocidad. Cuéntanos qué módulos, formularios o integraciones necesitas para definir la estructura de la web.<br><br><a href="${baseWhatsApp}?text=Hola! Quiero cotizar el desarrollo de una Landing Page." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ PLANIFICAR PROYECTO WEB</a>`;
+            else if (input.includes('web') || input.includes('landing') || input.includes('pagina') || input === 'web' || input.includes('correo') || input.includes('hosting')) {
+                reply = `🚀 *Ingeniería Web Frontend e Infraestructura:*<br><br>
+                Estructuramos portales digitales enfocados en la velocidad de carga y la conversión limpia de clientes potenciales. Programamos interfaces nativas no convencionales que le otorgan la seriedad, respaldo y formalidad que tu negocio necesita en internet:<br><br>
+                • **Landing Pages de Alta Conversión:** Páginas de aterrizaje optimizadas, modulares y de estructura fluida para campañas publicitarias efectivas.<br>
+                • **Infraestructura Completa:** Ofrecemos integraciones que incluyen la gestión de dominios internacionales (.com o regionales), hosting de alta velocidad optimizado y servidores estables.<br>
+                • **Correos Corporativos:** Si aún no estás listo para una web completa pero necesitás formalizar tu comunicación comercial de inmediato, activamos cuentas de correo institucionales bajo tu propio nombre de dominio.<br><br>
+                Cuéntanos qué módulos esenciales, catálogos interactivos o formularios de captura requiere tu modelo de negocio para definir las dimensiones técnicas del desarrollo:<br><br>
+                <a href="${baseWhatsApp}?text=Hola! Quiero cotizar la planificación y desarrollo de una landing page / plataforma web." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ PLANIFICAR PROYECTO WEB</a>`;
             } 
             else if (input.includes('tienda') || input.includes('playera') || input.includes('luck') || input === 'tienda') {
-                reply = `🛍 *Línea Oficial de Merch:*<br>Si deseas adquirir alguna playera del catálogo Drop 01 o cotizar la producción de merch personalizada para tu propia empresa, comunícate con nosotros para coordinar tallas y distribución.`;
+                reply = `🛍️ *Línea Oficial de Merch & Textil:*<br><br>
+                Nuestra línea oficial de ropa urbana está activa liderada por la playera icónica **"FET'S LUCK"** (Algodón pesado premium, frente minimalista limpio y estampado tipográfico nítido de alto impacto en la espalda).<br><br>
+                • **Pedidos e Inquietudes:** Si querés adquirir las piezas de nuestro drop o te interesa cotizar la producción y diseño de merch textil personalizada para los colaboradores o eventos de tu propia marca, coordinemos directamente.<br><br>
+                Hacemos envíos rápidos y embalados de forma segura a cualquier zona de **Guatemala**.`;
             } 
-            else if (input.includes('humor') || input.includes('viral') || input.includes('colabora')) {
-                reply = `🤖 *Laboratorio de Humor e IA:*<br>Desarrollamos contenidos multimedia de alto impacto orgánico. Si deseas pautar o realizar una colaboración estratégica con tu marca dentro de nuestros canales, analicemos tu idea.<br><br><a href="${baseWhatsApp}?text=Hola! Me interesa una colaboración publicitaria." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ ANALIZAR COLABORACIÓN VIRAL</a>`;
+            else if (input.includes('humor') || input.includes('viral') || input.includes('colabora') || input.includes('redes')) {
+                reply = `🤖 *Laboratorio de Humor Creativo e IA:*<br><br>
+                Nuestra mayor ventaja competitiva en el mercado es el entendimiento profundo de los algoritmos modernos. Desarrollamos contenidos disruptivos y surrealistas que acumulan millones de impactos orgánicos en plataformas digitales.<br><br>
+                • **Alianzas de Marca:** Si deseas pautar o que inyectemos nuestro estilo irreverente con Inteligencia Artificial aplicada para posicionar tu producto o servicio frente a nuestra audiencia masiva, coordinemos una llamada técnica.<br><br>
+                <a href="${baseWhatsApp}?text=Hola! Me interesa analizar los formatos para una colaboración publicitaria en los canales de Pepitoria." target="_blank" class="text-brand-hardware font-bold underline font-mono text-[11px]">➔ EVALUAR ALIANZA VIRAL</a>`;
             } 
-            else if (input.includes('hola') || input.includes('saludos') || input.includes('que tal')) {
-                reply = `¡Protocolo establecido! Bienvenido al canal automatizado. Consultame libremente tus dudas sobre proyectos audiovisuales, ingeniería web o identidades de marca para guiarte en tu cotización.`;
+            else if (input.includes('hola') || input.includes('saludos') || input.includes('que tal') || input.includes('buenas')) {
+                reply = `¡Protocolo de comunicación establecido! Bienvenido al canal automatizado de atención de **Pepitoria Estudio**.<br><br>
+                Escribe detalladamente tu consulta sobre nuestras ramas operativas:<br>
+                • ⚡ **Anuncios Publicitarios** audiovisuales.<br>
+                • 🎨 **Diseño Gráfico, Branding Exterior o Artes**.<br>
+                • 🚀 **Páginas Web Front-end y Correos Corporativos**.<br>
+                • 🤖 **Colaboraciones Estratégicas** en el Laboratorio de Humor.<br><br>
+                O si prefieres, cuéntame de una vez de qué trata tu idea de negocio para guiarte en el proceso.`;
             } 
             else {
-                reply = `Entendido. Para darte un presupuesto exacto basado en las necesidades de tu marca, lo ideal es que revisemos el alcance en una breve sesión directa por WhatsApp.<br><br><a href="${baseWhatsApp}?text=Hola Gabriel! Necesito una cotización personalizada para un proyecto." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ CONTACTAR DIRECTO VÍA WHATSAPP</a>`;
+                reply = `Entendido. Para poder brindarte una propuesta económica exacta y un desglose de fases adaptado al alcance real de lo que deseas construir para tu marca, analicemos el requerimiento de forma directa.<br><br>
+                Comunícate a nuestra línea oficial de atención en Guatemala para coordinar los detalles:<br><br>
+                <a href="${baseWhatsApp}?text=Hola Gabriel! Necesito una cotización detallada y personalizada para un proyecto específico de mi marca." target="_blank" class="text-brand-pepilla font-bold underline font-mono text-[11px]">➔ CONTACTAR DIRECTO VÍA WHATSAPP</a>`;
             }
 
             appendMessage("AGENTE_IA_PEPITORIA", reply, "agent");
